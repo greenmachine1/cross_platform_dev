@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface New_Account_viewViewController : UIViewController
-
+@interface New_Account_viewViewController : UIViewController<UITextFieldDelegate>
+{
+    
+    IBOutlet UITextField *userName;
+    IBOutlet UITextField *passWord;
+    IBOutlet UITextField *email;
+    
+    
+}
 @end

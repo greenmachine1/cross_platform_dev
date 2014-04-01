@@ -8,6 +8,8 @@
 
 #import "New_Account_viewViewController.h"
 
+#import <Parse/Parse.h>
+
 @interface New_Account_viewViewController ()
 
 @end
@@ -26,14 +28,69 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    
+    [userName setDelegate:self];
+    [passWord setDelegate:self];
+    [email setDelegate:self];
 }
 
 
+
+
+// **** user clicks done or cancel **** //
 -(IBAction)onClick:(id)sender{
     
-    [self dismissViewControllerAnimated:TRUE completion:nil];
+    UIButton *button = (UIButton *)sender;
+    if(button.tag == 0){
+        
+        
+        // **** setting up the user account info **** //
+        PFUser *user = [PFUser user];
+        user.username = userName.text;
+        user.password = passWord.text;
+        user.email = email.text;
+        
+        
+        // **** the sign up portion **** //
+        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            
+            // **** successful creation of user **** //
+            if(!error){
+                NSLog(@"Successful creation of account");
+                
+            // **** something happened and it work **** //
+            }else{
+                
+                NSLog(@"There was an error in creating this account");
+                
+            }
+            
+        }];
+        
+        
+        
+        
+        
+    }else if (button.tag == 1){
+        
+        [self dismissViewControllerAnimated:TRUE completion:nil];
+        
+    }
+
     
+}
+
+
+// **** setting up the return key in the keyboard **** //
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [userName resignFirstResponder];
+    [passWord resignFirstResponder];
+    [email resignFirstResponder];
+    
+    
+    return  TRUE;
 }
 
 
