@@ -59,10 +59,15 @@
             if(!error){
                 NSLog(@"Successful creation of account");
                 
+                
+                // **** go back to the main screen **** //
+                [self dismissViewControllerAnimated:TRUE completion:nil];
+                
             // **** something happened and it work **** //
             }else{
                 
                 NSLog(@"There was an error in creating this account");
+                NSLog(@"%@", error);
                 
             }
             

@@ -58,7 +58,22 @@
             
         }else{
             
-            NSLog(@"Authenticating...");
+            [PFUser logInWithUsernameInBackground:userName.text password:passWord.text block:^(PFUser *user, NSError *error) {
+                
+                // **** if the user name and password is good ****
+                if(user){
+                    
+                    NSLog(@"succesful login");
+                
+                // **** if it is not **** //
+                }else{
+                    
+                    NSLog(@"Please try again");
+                    
+                }
+                
+                
+            }];
         }
         
         
