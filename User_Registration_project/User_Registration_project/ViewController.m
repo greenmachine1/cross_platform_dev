@@ -10,6 +10,8 @@
 
 #import "New_Account_viewViewController.h"
 
+#import "UserInfo.h"
+
 #import <Parse/Parse.h>
 
 @interface ViewController ()
@@ -28,11 +30,41 @@
     [passWord setDelegate:self];
     
     
-    // **** testing the parse framework - sending out some info **** //
-    // **** to the cloud server **** //
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar is great and tasty!";
-    [testObject saveInBackground];
+    // **** telling whether or not the user is currently **** //
+    // **** still logged in or not **** //
+    currentUser = [PFUser currentUser];
+    
+    if(currentUser){
+        
+        NSLog(@"User is still logged in");
+        
+        
+    }else{
+        
+        NSLog(@"Nope, they are not");
+    }
+    
+}
+
+
+
+
+// **** coming back from other views, this gets **** //
+// **** called **** //
+-(void)viewWillAppear:(BOOL)animated{
+    
+    
+    NSLog(@"Here again");
+    
+    if(currentUser){
+        
+        NSLog(@"User is still logged in");
+        
+        
+    }else{
+        
+        NSLog(@"Nope, they are not");
+    }
     
 }
 
@@ -64,6 +96,11 @@
                 if(user){
                     
                     NSLog(@"succesful login");
+                    
+                    UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
+                    [self presentViewController:newUserInfo animated:TRUE completion:nil];
+                    
+                    
                 
                 // **** if it is not **** //
                 }else{

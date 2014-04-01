@@ -32,6 +32,8 @@
 		D6BFC9A418EA4A87000128B7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFC9A318EA4A87000128B7 /* Security.framework */; };
 		D6BFC9A618EA4A8E000128B7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFC9A518EA4A8E000128B7 /* StoreKit.framework */; };
 		D6BFC9A818EA4A99000128B7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFC9A718EA4A99000128B7 /* SystemConfiguration.framework */; };
+		D6BFC9AC18EA7BC5000128B7 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BFC9AA18EA7BC5000128B7 /* UserInfo.m */; };
+		D6BFC9AD18EA7BC5000128B7 /* UserInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6BFC9AB18EA7BC5000128B7 /* UserInfo.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,9 @@
 		D6BFC9A318EA4A87000128B7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D6BFC9A518EA4A8E000128B7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D6BFC9A718EA4A99000128B7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D6BFC9A918EA7BC5000128B7 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		D6BFC9AA18EA7BC5000128B7 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		D6BFC9AB18EA7BC5000128B7 /* UserInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfo.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +168,9 @@
 				D6BFC99218EA4377000128B7 /* New_Account_viewViewController.h */,
 				D6BFC99318EA4377000128B7 /* New_Account_viewViewController.m */,
 				D6BFC99418EA4377000128B7 /* New_Account_viewViewController.xib */,
+				D6BFC9A918EA7BC5000128B7 /* UserInfo.h */,
+				D6BFC9AA18EA7BC5000128B7 /* UserInfo.m */,
+				D6BFC9AB18EA7BC5000128B7 /* UserInfo.xib */,
 			);
 			path = User_Registration_project;
 			sourceTree = "<group>";
@@ -274,6 +282,7 @@
 			files = (
 				D6BFC97618EA3024000128B7 /* Images.xcassets in Resources */,
 				D6BFC96818EA3024000128B7 /* InfoPlist.strings in Resources */,
+				D6BFC9AD18EA7BC5000128B7 /* UserInfo.xib in Resources */,
 				D6BFC99618EA4377000128B7 /* New_Account_viewViewController.xib in Resources */,
 				D6BFC97118EA3024000128B7 /* Main.storyboard in Resources */,
 			);
@@ -297,6 +306,7 @@
 				D6BFC99518EA4377000128B7 /* New_Account_viewViewController.m in Sources */,
 				D6BFC97418EA3024000128B7 /* ViewController.m in Sources */,
 				D6BFC96E18EA3024000128B7 /* AppDelegate.m in Sources */,
+				D6BFC9AC18EA7BC5000128B7 /* UserInfo.m in Sources */,
 				D6BFC96A18EA3024000128B7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

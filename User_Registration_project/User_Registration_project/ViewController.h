@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import <Parse/Parse.h>
+
 @interface ViewController : UIViewController<UITextFieldDelegate>
 {
     IBOutlet UITextField *userName;
     IBOutlet UITextField *passWord;
+    
+    PFUser *currentUser;
     
 }
 @end
