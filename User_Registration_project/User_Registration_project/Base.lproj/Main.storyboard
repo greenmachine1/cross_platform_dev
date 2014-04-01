@@ -45,7 +45,7 @@
                                 <rect key="frame" x="54" y="475" width="213" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.75822537488552233" blue="0.69118411575229999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Create Account">
+                                <state key="normal" title="Create a New Account">
                                     <color key="titleColor" red="0.10543096797934921" green="0.19909917091836737" blue="0.14110811444932686" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -57,7 +57,7 @@
                                 <rect key="frame" x="54" y="388" width="213" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.75822537489999997" blue="0.69118411580000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Done">
+                                <state key="normal" title="Log In">
                                     <color key="titleColor" red="0.105430968" green="0.19909917090000001" blue="0.14110811440000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
