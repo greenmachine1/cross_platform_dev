@@ -17,7 +17,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    
+    // **** setting the textFieldDelegate to self **** //
+    [userName setDelegate:self];
+    [passWord setDelegate:self];
+    
+    
 }
 
 
@@ -32,6 +38,15 @@
     if(button.tag == 0){
         
         
+        NSLog(@"%@", userName.text);
+        NSLog(@"%@", passWord.text);
+        
+        
+        
+        
+    }else if(button.tag == 1){
+        
+        
         
         
         
@@ -44,10 +59,17 @@
 // **** called when the user hits return on the keyboard **** //
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    
+    [userName resignFirstResponder];
+    [passWord resignFirstResponder];
     
     return true;
 }
+
+
+
+
+
+
 
 
 - (void)didReceiveMemoryWarning
