@@ -38,6 +38,10 @@
     [userName setDelegate:self];
     [passWord setDelegate:self];
     [email setDelegate:self];
+    
+    userName.clearsOnBeginEditing = true;
+    passWord.clearsOnBeginEditing = true;
+    email.clearsOnBeginEditing = true;
 }
 
 

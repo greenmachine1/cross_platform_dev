@@ -33,6 +33,9 @@
     
     [nameOfBandText setDelegate:self];
     [numberOfMemebers setDelegate:self];
+    
+    nameOfBandText.clearsOnBeginEditing = true;
+    numberOfMemebers.clearsOnBeginEditing = true;
 }
 
 

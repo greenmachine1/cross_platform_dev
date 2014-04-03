@@ -29,6 +29,10 @@
     [userName setDelegate:self];
     [passWord setDelegate:self];
     
+    userName.clearsOnBeginEditing = true;
+    passWord.clearsOnBeginEditing = true;
+    
+    
     
     // **** telling whether or not the user is currently **** //
     // **** still logged in or not **** //

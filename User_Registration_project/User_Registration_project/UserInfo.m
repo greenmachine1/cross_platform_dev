@@ -54,6 +54,9 @@
     [query whereKey:@"user" equalTo:user];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
+        [userInfoArray removeAllObjects];
+        
+        
         // **** an error has happened
         if(error){
             
