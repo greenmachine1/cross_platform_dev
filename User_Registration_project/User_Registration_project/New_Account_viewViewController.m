@@ -22,7 +22,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
+        defaults = [NSUserDefaults standardUserDefaults];
+        
+        
     }
     return self;
 }

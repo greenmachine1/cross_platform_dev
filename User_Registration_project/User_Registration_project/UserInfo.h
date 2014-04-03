@@ -13,5 +13,7 @@
     
     IBOutlet UITableView *userInfoTableView;
     
+    NSUserDefaults *defaults;
+    
 }
 @end

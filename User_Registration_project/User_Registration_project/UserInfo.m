@@ -20,7 +20,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
+        defaults = [NSUserDefaults standardUserDefaults];
+        
+        
     }
     return self;
 }
@@ -30,7 +33,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-
+    if([defaults objectForKey:@"userName"] != NULL){
+        
+        NSLog(@"%@", [defaults objectForKey:@"userName"]);
+        NSLog(@"%@", [defaults objectForKey:@"userEmail"]);
+    }
     
     
     
@@ -81,6 +88,9 @@
         
         // **** logging out the user **** //
         [PFUser logOut];
+        
+        [defaults removeObjectForKey:@"userName"];
+        [defaults removeObjectForKey:@"userEmail"];
         
         [self dismissViewControllerAnimated:TRUE completion:nil];
         

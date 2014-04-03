@@ -37,10 +37,11 @@
     // **** setting user defaults **** //
     defaults = [NSUserDefaults standardUserDefaults];
     
-    // **** setting the current user to be saved **** //
-    [defaults setObject:currentUser forKey:@"user"];
-    
 }
+
+
+
+
 
 
 
@@ -49,13 +50,17 @@
 // **** to the users info **** //
 -(void)viewDidAppear:(BOOL)animated{
     
-    if(currentUser){
+    if([defaults objectForKey:@"userName"] != nil){
         
         UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
     
         [self presentViewController:newUserInfo animated:true completion:nil];
     }
 }
+
+
+
+
 
 
 
@@ -91,6 +96,13 @@
                     [self presentViewController:newUserInfo animated:TRUE completion:nil];
                     
                     
+                    
+                    // **** setting the current user to be saved **** //
+                    [defaults setObject:user.username forKey:@"userName"];
+                    
+                    [defaults setObject:user.email forKey:@"userEmail"];
+                    
+                    [defaults synchronize];
                 
                 // **** if it is not **** //
                 }else{
@@ -102,6 +114,11 @@
                 
             }];
         }
+        
+        
+        
+        
+        
         
         
         
@@ -126,6 +143,8 @@
 
 
 
+
+
 // **** called when the user hits return on the keyboard **** //
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
@@ -136,6 +155,9 @@
     
     return true;
 }
+
+
+
 
 
 

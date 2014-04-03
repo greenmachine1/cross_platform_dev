@@ -15,6 +15,6 @@
     IBOutlet UITextField *passWord;
     IBOutlet UITextField *email;
     
-    
+    NSUserDefaults *defaults;
 }
 @end
