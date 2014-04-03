@@ -101,34 +101,6 @@
 
 
 // **** the contents of that list **** //
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
-    
-    if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    
-    if(userInfoArray != nil){
-        
-        NSString *tempString = [[NSString alloc] initWithFormat:@"%@", [userInfoArray objectAtIndex:indexPath.row]];
-        cell.textLabel.text = tempString;
-        
-    }else{
-        cell.textLabel.text = @"";
-    }
-    return cell;
-    
-}
-
-*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *simpleIdentifier = @"SimpleCell";
