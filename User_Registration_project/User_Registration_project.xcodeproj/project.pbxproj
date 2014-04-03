@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6A97BEE18ED559900D06F8A /* customCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A97BED18ED559900D06F8A /* customCell.m */; };
+		D6A97BF218ED574600D06F8A /* customCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6A97BF118ED574600D06F8A /* customCell.xib */; };
 		D6BFC95E18EA3024000128B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFC95D18EA3024000128B7 /* Foundation.framework */; };
 		D6BFC96018EA3024000128B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFC95F18EA3024000128B7 /* CoreGraphics.framework */; };
 		D6BFC96218EA3024000128B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFC96118EA3024000128B7 /* UIKit.framework */; };
@@ -49,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D6A97BEC18ED559900D06F8A /* customCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customCell.h; sourceTree = "<group>"; };
+		D6A97BED18ED559900D06F8A /* customCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customCell.m; sourceTree = "<group>"; };
+		D6A97BF118ED574600D06F8A /* customCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customCell.xib; sourceTree = "<group>"; };
 		D6BFC95A18EA3024000128B7 /* User_Registration_project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = User_Registration_project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BFC95D18EA3024000128B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D6BFC95F18EA3024000128B7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -179,6 +184,9 @@
 				D6BFC9AE18EBA003000128B7 /* AddBandInfo.h */,
 				D6BFC9AF18EBA003000128B7 /* AddBandInfo.m */,
 				D6BFC9B018EBA003000128B7 /* AddBandInfo.xib */,
+				D6A97BEC18ED559900D06F8A /* customCell.h */,
+				D6A97BED18ED559900D06F8A /* customCell.m */,
+				D6A97BF118ED574600D06F8A /* customCell.xib */,
 			);
 			path = User_Registration_project;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 				D6BFC97618EA3024000128B7 /* Images.xcassets in Resources */,
 				D6BFC96818EA3024000128B7 /* InfoPlist.strings in Resources */,
 				D6BFC9B218EBA003000128B7 /* AddBandInfo.xib in Resources */,
+				D6A97BF218ED574600D06F8A /* customCell.xib in Resources */,
 				D6BFC9AD18EA7BC5000128B7 /* UserInfo.xib in Resources */,
 				D6BFC99618EA4377000128B7 /* New_Account_viewViewController.xib in Resources */,
 				D6BFC97118EA3024000128B7 /* Main.storyboard in Resources */,
@@ -317,6 +326,7 @@
 				D6BFC96E18EA3024000128B7 /* AppDelegate.m in Sources */,
 				D6BFC9AC18EA7BC5000128B7 /* UserInfo.m in Sources */,
 				D6BFC9B118EBA003000128B7 /* AddBandInfo.m in Sources */,
+				D6A97BEE18ED559900D06F8A /* customCell.m in Sources */,
 				D6BFC96A18EA3024000128B7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,8 @@
 
 #import "AddBandInfo.h"
 
+#import "customCell.h"
+
 #import <Parse/Parse.h>
 
 @interface UserInfo ()
@@ -28,6 +30,8 @@
         user = [PFUser currentUser];
         
         userInfoArray = [[NSMutableArray alloc] init];
+        
+        numberOfMembers = [[NSMutableArray alloc] init];
         
     }
     return self;
@@ -56,6 +60,8 @@
         
         [userInfoArray removeAllObjects];
         
+        [numberOfMembers removeAllObjects];
+        
         
         // **** an error has happened
         if(error){
@@ -67,10 +73,8 @@
                 NSLog(@"%@", object);
                 
                 
-                
-                NSString *tempString = [[NSString alloc] initWithFormat:@"Band: %@ Number of Memembers: %@", [object objectForKey:@"bandName"], [object objectForKey:@"bandSize"]];
-                
-                [userInfoArray addObject:tempString];
+                [userInfoArray addObject:[object objectForKey:@"bandName"]];
+                [numberOfMembers addObject:[object objectForKey:@"bandSize"]];
                 
                 
                 
@@ -97,13 +101,15 @@
 
 
 // **** the contents of that list **** //
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
     
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
+
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
     
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
@@ -121,6 +127,35 @@
     return cell;
     
 }
+
+*/
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *simpleIdentifier = @"SimpleCell";
+    
+    customCell *cell = (customCell *)[tableView dequeueReusableCellWithIdentifier:simpleIdentifier];
+    if(cell == nil){
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"customCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    NSString *tempBandName = [[NSString alloc] initWithFormat:@"Band Name: %@", [userInfoArray objectAtIndex:indexPath.row]];
+    
+    NSString *tempNumberOfMembers = [[NSString alloc ] initWithFormat:@"Number of Members: %@", [numberOfMembers objectAtIndex:indexPath.row]];
+    
+    cell.bandName.text = tempBandName;
+    cell.numberOfMembers.text = tempNumberOfMembers;
+    
+    return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 130;
+}
+
 
 
 

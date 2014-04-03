@@ -23,5 +23,7 @@
     
     NSMutableArray *userInfoArray;
     
+    NSMutableArray *numberOfMembers;
+    
 }
 @end
