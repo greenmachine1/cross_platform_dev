@@ -54,7 +54,7 @@
 // **** to the users info **** //
 -(void)viewDidAppear:(BOOL)animated{
     
-    if([defaults objectForKey:@"userName"] != nil){
+    if(([defaults objectForKey:@"userName"] != nil) && (currentUser != nil)){
         
         UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
     
