@@ -8,13 +8,16 @@
 
 #import "AppDelegate.h"
 
+#import "ViewController.h"
+
+#import "UserInfo.h"
+
 #import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
     
     
     // **** parse framework stuff **** //
@@ -22,6 +25,12 @@
                   clientKey:@"uqZYdwJyr8DJ9LiMhQiKy2683tZsHu36q0nUP7Bp"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
+    UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
+    
+    
+    
     
     return YES;
 }

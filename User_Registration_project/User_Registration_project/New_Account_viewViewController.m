@@ -8,6 +8,8 @@
 
 #import "New_Account_viewViewController.h"
 
+#import "UserInfo.h"
+
 #import <Parse/Parse.h>
 
 @interface New_Account_viewViewController ()
@@ -60,8 +62,10 @@
                 NSLog(@"Successful creation of account");
                 
                 
-                // **** go back to the main screen **** //
-                [self dismissViewControllerAnimated:TRUE completion:nil];
+                // **** go to userinfo screen **** //
+                UserInfo *newUserInfoScreen = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
+                [self presentViewController:newUserInfoScreen animated:TRUE completion:nil];
+                
                 
             // **** something happened and it work **** //
             }else{

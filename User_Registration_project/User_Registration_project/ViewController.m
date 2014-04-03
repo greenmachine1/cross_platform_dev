@@ -48,25 +48,17 @@
 
 
 
-
-// **** coming back from other views, this gets **** //
-// **** called **** //
--(void)viewWillAppear:(BOOL)animated{
+// **** if the user is still logged in when the **** //
+// **** app is launched again, this screen will change **** //
+// **** to the users info **** //
+-(void)viewDidAppear:(BOOL)animated{
+    /*
+    UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
     
-    
-    NSLog(@"Here again");
-    
-    if(currentUser){
-        
-        NSLog(@"User is still logged in");
-        
-        
-    }else{
-        
-        NSLog(@"Nope, they are not");
-    }
-    
+    [self presentViewController:newUserInfo animated:true completion:nil];
+    */
 }
+
 
 
 
@@ -127,6 +119,9 @@
     
     
 }
+
+
+
 
 
 

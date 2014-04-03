@@ -29,21 +29,60 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+
+    
+    
+    
 }
+
+
+
+
+// **** how many rows are in the list **** //
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 2;
+}
+
+
+
+// **** the contents of that list **** //
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    cell.textLabel.text = @"Yep";
+    
+    return cell;
+}
+
+
+
+
 
 -(IBAction)onClick:(id)sender{
     
     UIButton *button = (UIButton *)sender;
+    
+    // **** adding band info **** //
     if(button.tag == 0){
+        
+        
+    // **** logging the person out **** //
+    }else if (button.tag == 1){
+        
         
         // **** logging out the user **** //
         [PFUser logOut];
         
         [self dismissViewControllerAnimated:TRUE completion:nil];
-        
-        
-    }else if (button.tag == 1){
-        
         
     }
     
