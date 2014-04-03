@@ -25,13 +25,6 @@
                   clientKey:@"uqZYdwJyr8DJ9LiMhQiKy2683tZsHu36q0nUP7Bp"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    
-    UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
-    
-    
-    
-    
     return YES;
 }
 							

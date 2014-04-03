@@ -17,5 +17,7 @@
     
     PFUser *currentUser;
     
+    NSUserDefaults *defaults;
+    
 }
 @end

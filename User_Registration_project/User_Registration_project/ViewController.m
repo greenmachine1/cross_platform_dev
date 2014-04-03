@@ -34,15 +34,8 @@
     // **** still logged in or not **** //
     currentUser = [PFUser currentUser];
     
-    if(currentUser){
-        
-        NSLog(@"User is still logged in");
-        
-        
-    }else{
-        
-        NSLog(@"Nope, they are not");
-    }
+    // **** setting user defaults **** //
+    defaults = [NSUserDefaults standardUserDefaults];
     
 }
 
@@ -52,11 +45,13 @@
 // **** app is launched again, this screen will change **** //
 // **** to the users info **** //
 -(void)viewDidAppear:(BOOL)animated{
-    /*
-    UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
     
-    [self presentViewController:newUserInfo animated:true completion:nil];
-    */
+    if(currentUser){
+        
+        UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
+    
+        [self presentViewController:newUserInfo animated:true completion:nil];
+    }
 }
 
 
