@@ -37,6 +37,9 @@
     // **** setting user defaults **** //
     defaults = [NSUserDefaults standardUserDefaults];
     
+    // **** setting the current user to be saved **** //
+    [defaults setObject:currentUser forKey:@"user"];
+    
 }
 
 
