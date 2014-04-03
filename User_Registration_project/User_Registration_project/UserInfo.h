@@ -21,7 +21,7 @@
     
     PFUser *user;
     
-    NSArray *userInfoArray;
+    NSMutableArray *userInfoArray;
     
 }
 @end

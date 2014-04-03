@@ -27,6 +27,8 @@
         
         user = [PFUser currentUser];
         
+        userInfoArray = [[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -50,18 +52,33 @@
     
     query = [PFQuery queryWithClassName:@"Post"];
     [query whereKey:@"user" equalTo:user];
-    
-    userInfoArray = [query findObjects];
-    
-    
-    if(userInfoArray != nil){
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
-        NSLog(@"%@", userInfoArray);
-        NSLog(@"%lu", (unsigned long)[userInfoArray count]);
+        // **** an error has happened
+        if(error){
+            
+            
+        }else{
+            
+            for(PFObject *object in objects){
+                NSLog(@"%@", object);
+                
+                
+                
+                NSString *tempString = [[NSString alloc] initWithFormat:@"Band: %@ Number of Memembers: %@", [object objectForKey:@"bandName"], [object objectForKey:@"bandSize"]];
+                
+                [userInfoArray addObject:tempString];
+                
+                
+                
+                
+                [userInfoTableView reloadData];
+            }
+            
+        }
         
         
-        [userInfoTableView reloadData];
-    }
+    }];
     
 }
 
