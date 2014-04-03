@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import <Parse/Parse.h>
+
 @interface AddBandInfo : UIViewController<UITextFieldDelegate>
 {
     
     IBOutlet UITextField *nameOfBandText;
     IBOutlet UITextField *numberOfMemebers;
     
-    
+    PFUser *user;
 }
 @end

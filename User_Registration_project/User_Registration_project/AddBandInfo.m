@@ -19,6 +19,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
+        user = [PFUser currentUser];
+        
     }
     return self;
 }
@@ -55,6 +57,13 @@
     // **** done **** //
     if(button.tag == 0){
         
+        
+        PFObject *post = [PFObject objectWithClassName:@"Post"];
+        post[@"bandName"] = nameOfBandText.text;
+        post[@"bandSize"] = numberOfMemebers.text;
+        post[@"user"] = user;
+        
+        [post save];
         
         
         [self dismissViewControllerAnimated:TRUE completion:nil];

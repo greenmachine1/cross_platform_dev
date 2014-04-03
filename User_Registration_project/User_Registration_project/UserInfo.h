@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+#import <Parse/Parse.h>
+
 @interface UserInfo : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
     
     IBOutlet UITableView *userInfoTableView;
     
     NSUserDefaults *defaults;
+    
+    PFQuery *query;
+    
+    PFUser *user;
+    
+    NSArray *userInfoArray;
     
 }
 @end
