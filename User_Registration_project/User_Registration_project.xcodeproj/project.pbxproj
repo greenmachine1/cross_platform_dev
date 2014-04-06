@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D621D02A18F1DF11002DB7CC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D621D02918F1DF11002DB7CC /* Reachability.m */; };
 		D6A97BEE18ED559900D06F8A /* customCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A97BED18ED559900D06F8A /* customCell.m */; };
 		D6A97BF218ED574600D06F8A /* customCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6A97BF118ED574600D06F8A /* customCell.xib */; };
 		D6BFC95E18EA3024000128B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BFC95D18EA3024000128B7 /* Foundation.framework */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D621D02818F1DF11002DB7CC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		D621D02918F1DF11002DB7CC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D6A97BEC18ED559900D06F8A /* customCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customCell.h; sourceTree = "<group>"; };
 		D6A97BED18ED559900D06F8A /* customCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customCell.m; sourceTree = "<group>"; };
 		D6A97BF118ED574600D06F8A /* customCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = customCell.xib; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 				D6A97BEC18ED559900D06F8A /* customCell.h */,
 				D6A97BED18ED559900D06F8A /* customCell.m */,
 				D6A97BF118ED574600D06F8A /* customCell.xib */,
+				D621D02818F1DF11002DB7CC /* Reachability.h */,
+				D621D02918F1DF11002DB7CC /* Reachability.m */,
 			);
 			path = User_Registration_project;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 			files = (
 				D6BFC99518EA4377000128B7 /* New_Account_viewViewController.m in Sources */,
 				D6BFC97418EA3024000128B7 /* ViewController.m in Sources */,
+				D621D02A18F1DF11002DB7CC /* Reachability.m in Sources */,
 				D6BFC96E18EA3024000128B7 /* AppDelegate.m in Sources */,
 				D6BFC9AC18EA7BC5000128B7 /* UserInfo.m in Sources */,
 				D6BFC9B118EBA003000128B7 /* AddBandInfo.m in Sources */,

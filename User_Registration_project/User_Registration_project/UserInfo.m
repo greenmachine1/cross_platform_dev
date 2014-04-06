@@ -12,6 +12,8 @@
 
 #import "customCell.h"
 
+
+
 #import <Parse/Parse.h>
 
 @interface UserInfo ()
@@ -47,6 +49,10 @@
         NSLog(@"%@", [defaults objectForKey:@"userName"]);
         NSLog(@"%@", [defaults objectForKey:@"userEmail"]);
     }
+    
+    
+    
+    
     
     
     

@@ -12,6 +12,8 @@
 
 #import "UserInfo.h"
 
+#import "Reachability.h"
+
 #import <Parse/Parse.h>
 
 @interface ViewController ()
@@ -32,7 +34,13 @@
     userName.clearsOnBeginEditing = true;
     passWord.clearsOnBeginEditing = true;
     
+    Reachability *newReachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
     
+    newReachability.reachableOnWWAN = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityMethod:) name:kReachabilityChangedNotification object:nil];
+    
+    [newReachability startNotifier];
     
     // **** telling whether or not the user is currently **** //
     // **** still logged in or not **** //
@@ -43,6 +51,12 @@
     
 }
 
+
+-(void)reachabilityMethod:(NSNotification *)notify{
+    
+    NSLog(@"Changed");
+    
+}
 
 
 
