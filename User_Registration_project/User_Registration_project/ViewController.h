@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Reachability.h"
+
 #import <Parse/Parse.h>
 
 @interface ViewController : UIViewController<UITextFieldDelegate>
@@ -18,6 +20,8 @@
     PFUser *currentUser;
     
     NSUserDefaults *defaults;
+    
+    Reachability *newReachability;
     
 }
 @end

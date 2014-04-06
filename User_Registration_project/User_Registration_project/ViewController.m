@@ -34,9 +34,10 @@
     userName.clearsOnBeginEditing = true;
     passWord.clearsOnBeginEditing = true;
     
-    Reachability *newReachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
+    newReachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
     
-    newReachability.reachableOnWWAN = NO;
+    newReachability.reachableOnWWAN = YES;
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityMethod:) name:kReachabilityChangedNotification object:nil];
     
@@ -52,9 +53,16 @@
 }
 
 
+// **** called when the change in network connnection **** //
+// **** is detected **** //
 -(void)reachabilityMethod:(NSNotification *)notify{
     
     NSLog(@"Changed");
+    NSLog(@"%@", notify);
+    
+    NSLog(@"Wifi connection status %hhd", newReachability.isReachableViaWiFi);
+    NSLog(@"cellular connection status %hhd", newReachability.isReachableViaWWAN);
+    NSLog(@"is connected at all %hhd", newReachability.isReachable);
     
 }
 
