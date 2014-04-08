@@ -98,11 +98,17 @@
 
 
 
+
+
 // **** how many rows are in the list **** //
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return userInfoArray.count;
 }
+
+
+
+
 
 
 
@@ -137,6 +143,16 @@
     
     return 130;
 }
+
+
+// **** user makes a selection **** //
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    
+}
+
 
 
 
