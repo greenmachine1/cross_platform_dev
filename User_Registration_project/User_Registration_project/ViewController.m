@@ -34,12 +34,15 @@
     userName.clearsOnBeginEditing = true;
     passWord.clearsOnBeginEditing = true;
     
+    
+    // **** reachability class **** //
     newReachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
     
     newReachability.reachableOnWWAN = YES;
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityMethod:) name:kReachabilityChangedNotification object:nil];
+    // **** using NSNotificationCenter **** //
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityMethod:) name:kReachabilityChangedNotification object:newReachability];
     
     [newReachability startNotifier];
     
@@ -63,6 +66,7 @@
 -(void)reachabilityMethod:(NSNotification *)notify{
     
     NSLog(@"Changed");
+    NSLog(@" -- > %@", notify);
     
     NSLog(@"Wifi connection status %hhd", newReachability.isReachableViaWiFi);
     NSLog(@"cellular connection status %hhd", newReachability.isReachableViaWWAN);
@@ -72,6 +76,11 @@
     // **** basically testing to see which connection is available and blocking the **** //
     // **** user from going any further if connectivity isnt present **** //
     if(newReachability.isReachable == 0){
+        
+        
+        UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"No Connection" message:@"Please connect either with WiFi or Cellular connectivity to access Gigbags features" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        
+        [newAlert show];
         
         wifiLabel.hidden = NO;
         cellularLabel.hidden = NO;
@@ -96,6 +105,8 @@
     }
     
 }
+
+
 
 
 
@@ -212,9 +223,6 @@
     
     return true;
 }
-
-
-
 
 
 
