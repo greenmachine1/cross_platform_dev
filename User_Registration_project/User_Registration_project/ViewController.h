@@ -17,6 +17,12 @@
     IBOutlet UITextField *userName;
     IBOutlet UITextField *passWord;
     
+    IBOutlet UILabel *wifiLabel;
+    IBOutlet UILabel *cellularLabel;
+    
+    IBOutlet UIButton *loginButton;
+    IBOutlet UIButton *createAccountButton;
+    
     PFUser *currentUser;
     
     NSUserDefaults *defaults;

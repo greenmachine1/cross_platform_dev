@@ -50,6 +50,11 @@
     // **** setting user defaults **** //
     defaults = [NSUserDefaults standardUserDefaults];
     
+    // **** hidding the wifi and Cellular **** //
+    // **** labels if connectivity is present **** //
+    wifiLabel.hidden = YES;
+    cellularLabel.hidden = YES;
+    
 }
 
 
@@ -58,11 +63,37 @@
 -(void)reachabilityMethod:(NSNotification *)notify{
     
     NSLog(@"Changed");
-    NSLog(@"%@", notify);
     
     NSLog(@"Wifi connection status %hhd", newReachability.isReachableViaWiFi);
     NSLog(@"cellular connection status %hhd", newReachability.isReachableViaWWAN);
     NSLog(@"is connected at all %hhd", newReachability.isReachable);
+    
+    
+    // **** basically testing to see which connection is available and blocking the **** //
+    // **** user from going any further if connectivity isnt present **** //
+    if(newReachability.isReachable == 0){
+        
+        wifiLabel.hidden = NO;
+        cellularLabel.hidden = NO;
+        
+        userName.hidden = YES;
+        passWord.hidden = YES;
+        
+        loginButton.hidden = YES;
+        createAccountButton.hidden = YES;
+        
+        
+    }else{
+        
+        wifiLabel.hidden = YES;
+        cellularLabel.hidden = YES;
+        
+        userName.hidden = NO;
+        passWord.hidden = NO;
+        
+        loginButton.hidden = NO;
+        createAccountButton.hidden = NO;
+    }
     
 }
 
