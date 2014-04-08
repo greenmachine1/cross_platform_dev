@@ -78,11 +78,11 @@
             for(PFObject *object in objects){
                 NSLog(@"%@", object);
                 
+                NSNumber *numberOfMemebersInBand = [object objectForKey:@"bandSize"];
                 
                 [userInfoArray addObject:[object objectForKey:@"bandName"]];
-                [numberOfMembers addObject:[object objectForKey:@"bandSize"]];
                 
-                
+                [numberOfMembers addObject:numberOfMemebersInBand];
                 
                 
                 [userInfoTableView reloadData];
@@ -132,7 +132,7 @@
 
 
 
-
+// **** the height of each cell **** //
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 130;

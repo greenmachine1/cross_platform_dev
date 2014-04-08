@@ -61,12 +61,16 @@
     if(button.tag == 0){
         
         
+        NSNumber *numberOfBandMemembers = [NSNumber numberWithInt:numberOfMemebers.text.intValue];
+        
         PFObject *post = [PFObject objectWithClassName:@"Post"];
         post[@"bandName"] = nameOfBandText.text;
-        post[@"bandSize"] = numberOfMemebers.text;
+        post[@"bandSize"] = numberOfBandMemembers;
         post[@"user"] = user;
         
-        [post save];
+        
+        // **** just in case the user looses connectivity **** //
+        [post saveInBackground];
         
         
         [self dismissViewControllerAnimated:TRUE completion:nil];
