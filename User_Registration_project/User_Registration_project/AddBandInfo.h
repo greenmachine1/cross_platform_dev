@@ -10,6 +10,8 @@
 
 #import <Parse/Parse.h>
 
+#import "UserInfo.h"
+
 
 
 @interface AddBandInfo : UIViewController<UITextFieldDelegate>
@@ -20,8 +22,11 @@
     
     PFUser *user;
     
+    // **** boolean value to compare as to where **** //
+    // **** this class originated from **** //
+    BOOL cameFromEdit;
+    
 }
 
-
-
+-(void)passInObject:(PFObject *)object didComeFromEdit:(BOOL)comeFromEdit;
 @end

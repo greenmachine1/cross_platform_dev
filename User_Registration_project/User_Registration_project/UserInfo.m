@@ -22,7 +22,7 @@
 
 @implementation UserInfo
 
-@synthesize passedInInfo;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -68,6 +68,8 @@
         NSLog(@"%@", [defaults objectForKey:@"userName"]);
         NSLog(@"%@", [defaults objectForKey:@"userEmail"]);
     }
+    
+    
 
 }
 
@@ -250,7 +252,7 @@
     
     [newAlert show];
     
-    selectedIndex = indexPath.row;
+    selectedIndex = (int)indexPath.row;
     
 }
 
@@ -272,12 +274,15 @@
         PFQuery *queryObject = [PFQuery queryWithClassName:@"Post"];
         PFObject *objectToBeDeleted = [queryObject getObjectWithId:[idsOfBands objectAtIndex:selectedIndex]];
         
+        AddBandInfo *editBandInfo = [[AddBandInfo alloc] initWithNibName:@"AddBandInfo" bundle:nil];
         
-        // **** this is my object to be passed on to the **** //
-        // **** editing view **** //
-        passedInInfo(objectToBeDeleted, 4);
+        [editBandInfo passInObject:objectToBeDeleted didComeFromEdit:TRUE];
         
         
+        [self presentViewController:editBandInfo animated:true completion:nil];
+        
+        
+
         
         
     // **** delete **** //
@@ -337,6 +342,9 @@
         
             AddBandInfo *newBandInfo = [[AddBandInfo alloc] initWithNibName:@"AddBandInfo" bundle:nil];
             [self presentViewController:newBandInfo animated:TRUE completion:nil];
+            
+            [newBandInfo passInObject:nil didComeFromEdit:FALSE];
+            
         
         // **** if there is no connectivity **** //
         }else{

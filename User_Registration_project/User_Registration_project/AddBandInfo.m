@@ -14,6 +14,7 @@
 
 @implementation AddBandInfo
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,7 +37,35 @@
     
     nameOfBandText.clearsOnBeginEditing = true;
     numberOfMemebers.clearsOnBeginEditing = true;
+    
+    
+    
+    
 }
+
+
+// **** passing in the PFObject and deciding where this call came from **** //
+-(void)passInObject:(PFObject *)object didComeFromEdit:(BOOL)comeFromEdit{
+    
+    NSLog(@"The object -->%@", object);
+    NSLog(@"%d", comeFromEdit);
+    
+}
+
+
+// **** passing in the info from UserInfo through a delegate **** //
+-(void)passInfoToAddBandInfo:(PFObject *)object cameFromUserInfoOrEdit:(BOOL)infoOrEdit{
+    
+    NSLog(@"%@", object);
+    
+    
+    cameFromEdit = infoOrEdit;
+    NSLog(@"%d", cameFromEdit);
+    
+}
+
+
+
 
 
 
@@ -62,21 +91,28 @@
     // **** done **** //
     if(button.tag == 0){
         
+        // **** if it did not come from Edit **** //
+        if(cameFromEdit == 0){
         
-        NSNumber *numberOfBandMemembers = [NSNumber numberWithInt:numberOfMemebers.text.intValue];
+            NSNumber *numberOfBandMemembers = [NSNumber numberWithInt:numberOfMemebers.text.intValue];
         
-        PFObject *post = [PFObject objectWithClassName:@"Post"];
-        post[@"bandName"] = nameOfBandText.text;
-        post[@"bandSize"] = numberOfBandMemembers;
-        post[@"user"] = user;
-        
-        
-        // **** just in case the user looses connectivity **** //
-        [post saveInBackground];
+            PFObject *post = [PFObject objectWithClassName:@"Post"];
+            post[@"bandName"] = nameOfBandText.text;
+            post[@"bandSize"] = numberOfBandMemembers;
+            post[@"user"] = user;
         
         
-        [self dismissViewControllerAnimated:TRUE completion:nil];
+            // **** just in case the user looses connectivity **** //
+            [post saveInBackground];
         
+        
+            [self dismissViewControllerAnimated:TRUE completion:nil];
+        }else{
+            
+            
+            
+            
+        }
     // **** cancel **** //
     }else if (button.tag == 1){
         
