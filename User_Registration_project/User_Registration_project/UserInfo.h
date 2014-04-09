@@ -12,7 +12,7 @@
 
 #import "Reachability.h"
 
-@interface UserInfo : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface UserInfo : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 {
     
     IBOutlet UITableView *userInfoTableView;
@@ -27,7 +27,11 @@
     
     NSMutableArray *numberOfMembers;
     
+    NSMutableArray *idsOfBands;
+    
     Reachability *reachability;
+    
+    int selectedIndex;
     
 }
 @end

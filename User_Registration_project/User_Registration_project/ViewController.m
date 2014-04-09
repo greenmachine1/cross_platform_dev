@@ -83,8 +83,8 @@
         userName.hidden = YES;
         passWord.hidden = YES;
         
-        [loginButton setEnabled:NO];
-        [createAccountButton setEnabled:NO];
+        loginButton.hidden = YES;
+        createAccountButton.hidden = YES;
         
         
         
@@ -97,8 +97,8 @@
         userName.hidden = NO;
         passWord.hidden = NO;
         
-        [loginButton setEnabled:YES];
-        [createAccountButton setEnabled:YES];
+        loginButton.hidden = NO;
+        createAccountButton.hidden = NO;
         
         
         // **** connect the user to their account **** //

@@ -35,6 +35,8 @@
         
         numberOfMembers = [[NSMutableArray alloc] init];
         
+        idsOfBands = [[NSMutableArray alloc] init];
+        
         reachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
         
         reachability.reachableOnWWAN = YES;
@@ -87,6 +89,8 @@
             
             [numberOfMembers removeAllObjects];
             
+            [idsOfBands removeAllObjects];
+            
             
             // **** an error has happened
             if(error){
@@ -103,9 +107,12 @@
                     
                     [numberOfMembers addObject:numberOfMemebersInBand];
                     
+                    [idsOfBands addObject:object.objectId];
                     
                     [userInfoTableView reloadData];
                 }
+                
+                
                 
             }
             
@@ -129,10 +136,14 @@
         query = [PFQuery queryWithClassName:@"Post"];
         [query whereKey:@"user" equalTo:user];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            NSLog(@"All the objects %@", objects);
         
             [userInfoArray removeAllObjects];
         
             [numberOfMembers removeAllObjects];
+            
+            [idsOfBands removeAllObjects];
         
         
             // **** an error has happened
@@ -149,10 +160,12 @@
                     [userInfoArray addObject:[object objectForKey:@"bandName"]];
                 
                     [numberOfMembers addObject:numberOfMemebersInBand];
-                
+                    
+                    [idsOfBands addObject:object.objectId];
                 
                     [userInfoTableView reloadData];
                 }
+                NSLog(@"data --> %@", idsOfBands);
             
             }
         
@@ -225,10 +238,65 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+    NSString *bandNameString = [[NSString alloc] initWithFormat:@"Edit or delege band %@?", [userInfoArray objectAtIndex:indexPath.row]];
     
+    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Edit or Delete" message:bandNameString delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Edit", @"Delete", nil];
+    
+    [newAlert show];
+    
+    selectedIndex = indexPath.row;
     
 }
 
+
+// **** called when the user selects an option from the Alertview **** //
+// **** edit is 1, Delete is 2, and cancel is **** //
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSString *nameOfBandSelected = [[NSString alloc] initWithFormat:@"%@",[userInfoArray objectAtIndex:selectedIndex]];
+    
+    NSLog(@"%@", nameOfBandSelected);
+    
+    
+    // **** cancel **** //
+    if(buttonIndex == 0){
+        
+    // **** edit **** //
+    }else if (buttonIndex == 1){
+        
+    // **** delete **** //
+    }else if (buttonIndex == 2){
+        
+        PFQuery *queryObject = [PFQuery queryWithClassName:@"Post"];
+        PFObject *objectToBeDeleted = [queryObject getObjectWithId:[idsOfBands objectAtIndex:selectedIndex]];
+        
+        NSLog(@"Object %@", objectToBeDeleted);
+        
+        
+        [userInfoArray removeObjectAtIndex:selectedIndex];
+        
+        [numberOfMembers removeObjectAtIndex:selectedIndex];
+        
+        [idsOfBands removeObjectAtIndex:selectedIndex];
+        
+        [objectToBeDeleted deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            
+            if(!error){
+             
+                NSLog(@"Succeded in deletion");
+                
+                [userInfoTableView reloadData];
+                
+            }else{
+                
+            }
+            
+            
+        }];
+        
+    }
+    
+}
 
 
 
