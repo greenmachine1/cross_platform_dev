@@ -52,6 +52,8 @@
 
 
 
+
+
 // **** done and cancel buttons **** //
 -(IBAction)onClick:(id)sender{
     UIButton *button = (UIButton *)sender;
@@ -77,8 +79,6 @@
         
     // **** cancel **** //
     }else if (button.tag == 1){
-        
-        
         
         [self dismissViewControllerAnimated:TRUE completion:nil];
         

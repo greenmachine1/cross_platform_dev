@@ -12,6 +12,7 @@
 
 #import "Reachability.h"
 
+typedef void (^PassedInInfo)(PFObject *, int);
 @interface UserInfo : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 {
     
@@ -33,5 +34,10 @@
     
     int selectedIndex;
     
+    PassedInInfo passedInInfo;
+    
 }
+
+@property (nonatomic, strong)PassedInInfo passedInInfo;
+
 @end

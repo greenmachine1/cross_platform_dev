@@ -22,6 +22,7 @@
 
 @implementation UserInfo
 
+@synthesize passedInInfo;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -234,6 +235,11 @@
 }
 
 
+
+
+
+
+
 // **** user makes a selection **** //
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -249,14 +255,13 @@
 }
 
 
+
+
+
+
 // **** called when the user selects an option from the Alertview **** //
 // **** edit is 1, Delete is 2, and cancel is **** //
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    NSString *nameOfBandSelected = [[NSString alloc] initWithFormat:@"%@",[userInfoArray objectAtIndex:selectedIndex]];
-    
-    NSLog(@"%@", nameOfBandSelected);
-    
     
     // **** cancel **** //
     if(buttonIndex == 0){
@@ -264,36 +269,53 @@
     // **** edit **** //
     }else if (buttonIndex == 1){
         
-    // **** delete **** //
-    }else if (buttonIndex == 2){
-        
         PFQuery *queryObject = [PFQuery queryWithClassName:@"Post"];
         PFObject *objectToBeDeleted = [queryObject getObjectWithId:[idsOfBands objectAtIndex:selectedIndex]];
         
-        NSLog(@"Object %@", objectToBeDeleted);
+        
+        // **** this is my object to be passed on to the **** //
+        // **** editing view **** //
+        passedInInfo(objectToBeDeleted, 4);
         
         
-        [userInfoArray removeObjectAtIndex:selectedIndex];
         
-        [numberOfMembers removeObjectAtIndex:selectedIndex];
         
-        [idsOfBands removeObjectAtIndex:selectedIndex];
+    // **** delete **** //
+    }else if (buttonIndex == 2){
         
-        [objectToBeDeleted deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if(reachability.isReachable == 1){
+        
+            PFQuery *queryObject = [PFQuery queryWithClassName:@"Post"];
+            PFObject *objectToBeDeleted = [queryObject getObjectWithId:[idsOfBands objectAtIndex:selectedIndex]];
+        
+            NSLog(@"Object %@", objectToBeDeleted);
+        
+            [objectToBeDeleted deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             
-            if(!error){
+                if(!error){
              
-                NSLog(@"Succeded in deletion");
+                    [userInfoArray removeObjectAtIndex:selectedIndex];
                 
-                [userInfoTableView reloadData];
+                    [numberOfMembers removeObjectAtIndex:selectedIndex];
                 
-            }else{
+                    [idsOfBands removeObjectAtIndex:selectedIndex];
                 
-            }
+                    [userInfoTableView reloadData];
+                
+                }
             
             
-        }];
-        
+            }];
+            
+        }else{
+            
+            UIAlertView *newAlertView = [[UIAlertView alloc] initWithTitle:@"No Connection" message:@"To Delete this object, please connect to either WiFi or Cellular Data" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            
+            [newAlertView show];
+            
+            
+        }
     }
     
 }
@@ -327,6 +349,9 @@
             [self presentViewController:newBandInfo animated:TRUE completion:nil];
             
         }
+        
+        
+        
         
     // **** logging the person out **** //
     }else if (button.tag == 1){

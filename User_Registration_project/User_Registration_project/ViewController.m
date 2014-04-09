@@ -35,6 +35,13 @@
     userName.clearsOnBeginEditing = true;
     passWord.clearsOnBeginEditing = true;
     
+    // **** hidding the wifi and Cellular **** //
+    // **** labels if connectivity is present **** //
+    wifiLabel.hidden = YES;
+    cellularLabel.hidden = YES;
+    
+    
+    
     // **** reachability class **** //
     newReachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
     
@@ -52,11 +59,6 @@
     
     // **** setting user defaults **** //
     defaults = [NSUserDefaults standardUserDefaults];
-    
-    // **** hidding the wifi and Cellular **** //
-    // **** labels if connectivity is present **** //
-    wifiLabel.hidden = YES;
-    cellularLabel.hidden = YES;
     
 }
 
