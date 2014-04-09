@@ -12,7 +12,7 @@
 
 #import "customCell.h"
 
-
+#import "Reachability.h"
 
 #import <Parse/Parse.h>
 
@@ -35,9 +35,25 @@
         
         numberOfMembers = [[NSMutableArray alloc] init];
         
+        reachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
+        
+        reachability.reachableOnWWAN = YES;
+        
+        // **** using NSNotificationCenter **** //
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityMethod:) name:kReachabilityChangedNotification object:nil];
+        
+        [reachability stopNotifier];
+        
+        
     }
     return self;
 }
+
+
+
+
+
+
 
 - (void)viewDidLoad
 {
@@ -49,49 +65,71 @@
         NSLog(@"%@", [defaults objectForKey:@"userName"]);
         NSLog(@"%@", [defaults objectForKey:@"userEmail"]);
     }
+
+}
+
+
+
+
+
+// **** changes in connectivity **** //
+-(void)reachabilityMethod:(NSNotification *)notify{
     
-    
-    
-    
-    
+    NSLog(@"This got called is connected %hhd", reachability.isReachable);
     
     
 }
 
+
+
+
 -(void)viewDidAppear:(BOOL)animated{
     
-    query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"user" equalTo:user];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    // **** if there is a connection **** //
+    if(reachability.isReachable == 1){
+    
+        query = [PFQuery queryWithClassName:@"Post"];
+        [query whereKey:@"user" equalTo:user];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
-        [userInfoArray removeAllObjects];
+            [userInfoArray removeAllObjects];
         
-        [numberOfMembers removeAllObjects];
+            [numberOfMembers removeAllObjects];
         
         
-        // **** an error has happened
-        if(error){
+            // **** an error has happened
+            if(error){
             
             
-        }else{
+            }else{
             
-            for(PFObject *object in objects){
-                NSLog(@"%@", object);
+                for(PFObject *object in objects){
+                    NSLog(@"%@", object);
                 
-                NSNumber *numberOfMemebersInBand = [object objectForKey:@"bandSize"];
+                    NSNumber *numberOfMemebersInBand = [object objectForKey:@"bandSize"];
                 
-                [userInfoArray addObject:[object objectForKey:@"bandName"]];
+                    [userInfoArray addObject:[object objectForKey:@"bandName"]];
                 
-                [numberOfMembers addObject:numberOfMemebersInBand];
+                    [numberOfMembers addObject:numberOfMemebersInBand];
                 
                 
-                [userInfoTableView reloadData];
+                    [userInfoTableView reloadData];
+                }
+            
             }
-            
-        }
         
         
-    }];
+        }];
+        
+    // **** if there is not **** //
+    }else{
+        
+        
+        
+        
+        
+        
+    }
     
 }
 
@@ -158,7 +196,7 @@
 
 
 
-
+// **** create new band info or logout **** //
 -(IBAction)onClick:(id)sender{
     
     UIButton *button = (UIButton *)sender;
@@ -166,9 +204,23 @@
     // **** adding band info **** //
     if(button.tag == 0){
         
-        AddBandInfo *newBandInfo = [[AddBandInfo alloc] initWithNibName:@"AddBandInfo" bundle:nil];
-        [self presentViewController:newBandInfo animated:TRUE completion:nil];
+        // **** if there is connectivity **** //
+        if(reachability.isReachable == 1){
         
+            AddBandInfo *newBandInfo = [[AddBandInfo alloc] initWithNibName:@"AddBandInfo" bundle:nil];
+            [self presentViewController:newBandInfo animated:TRUE completion:nil];
+        
+        // **** if there is no connectivity **** //
+        }else{
+            
+            UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"No Connection" message:@"You arent connected to the server, however, you can still create an entry and it will be delivered once connection is reestablished." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            
+            [newAlert show];
+            
+            AddBandInfo *newBandInfo = [[AddBandInfo alloc] initWithNibName:@"AddBandInfo" bundle:nil];
+            [self presentViewController:newBandInfo animated:TRUE completion:nil];
+            
+        }
         
     // **** logging the person out **** //
     }else if (button.tag == 1){
@@ -186,7 +238,6 @@
     
     
 }
-
 
 
 

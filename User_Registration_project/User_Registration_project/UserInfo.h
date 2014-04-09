@@ -10,6 +10,8 @@
 
 #import <Parse/Parse.h>
 
+#import "Reachability.h"
+
 @interface UserInfo : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
     
@@ -24,6 +26,8 @@
     NSMutableArray *userInfoArray;
     
     NSMutableArray *numberOfMembers;
+    
+    Reachability *reachability;
     
 }
 @end

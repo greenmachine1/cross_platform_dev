@@ -62,23 +62,31 @@
                                 <rect key="frame" x="-38" y="230" width="397" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.53114397810000002" green="1" blue="0.69514138489999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or Cellular Network to Log In" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uV-Go-Gos">
+                                <rect key="frame" x="50" y="258" width="220" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or Cellular Network" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uV-Go-Gos">
-                                <rect key="frame" x="86" y="261" width="148" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="or Create a New Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPu-rR-FBP">
+                                <rect key="frame" x="64" y="284" width="193" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.49400173304549322" green="1" blue="0.7540473205355962" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="cellularLabel" destination="3uV-Go-Gos" id="vl1-Dc-bG2"/>
                         <outlet property="createAccountButton" destination="94F-Ok-Uzy" id="U81-eC-ENt"/>
                         <outlet property="loginButton" destination="bv8-eg-8Dh" id="gjf-9r-zeY"/>
                         <outlet property="passWord" destination="M6J-zi-xbF" id="teq-u9-vkY"/>
+                        <outlet property="thirdLine" destination="jPu-rR-FBP" id="hhB-sc-ZDo"/>
                         <outlet property="userName" destination="1fX-4u-Cph" id="rrR-b5-rcr"/>
                         <outlet property="wifiLabel" destination="buU-c6-m5s" id="Yfi-V1-0qR"/>
                     </connections>

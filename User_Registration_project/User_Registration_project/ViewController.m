@@ -22,6 +22,7 @@
 
 @implementation ViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,7 +34,6 @@
     
     userName.clearsOnBeginEditing = true;
     passWord.clearsOnBeginEditing = true;
-    
     
     // **** reachability class **** //
     newReachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
@@ -66,7 +66,6 @@
 -(void)reachabilityMethod:(NSNotification *)notify{
     
     NSLog(@"Changed");
-    NSLog(@" -- > %@", notify);
     
     NSLog(@"Wifi connection status %hhd", newReachability.isReachableViaWiFi);
     NSLog(@"cellular connection status %hhd", newReachability.isReachableViaWWAN);
@@ -77,31 +76,37 @@
     // **** user from going any further if connectivity isnt present **** //
     if(newReachability.isReachable == 0){
         
-        
+        /*
         UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"No Connection" message:@"Please connect either with WiFi or Cellular connectivity to access Gigbags features" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
+        
         [newAlert show];
+         */
         
         wifiLabel.hidden = NO;
         cellularLabel.hidden = NO;
+        thirdLine.hidden = NO;
         
         userName.hidden = YES;
         passWord.hidden = YES;
         
-        loginButton.hidden = YES;
-        createAccountButton.hidden = YES;
+        [loginButton setEnabled:NO];
+        [createAccountButton setEnabled:NO];
+        
         
         
     }else{
         
         wifiLabel.hidden = YES;
         cellularLabel.hidden = YES;
+        thirdLine.hidden = YES;
         
         userName.hidden = NO;
         passWord.hidden = NO;
         
-        loginButton.hidden = NO;
-        createAccountButton.hidden = NO;
+        [loginButton setEnabled:YES];
+        [createAccountButton setEnabled:YES];
+        
     }
     
 }
@@ -118,7 +123,7 @@
 // **** to the users info **** //
 -(void)viewDidAppear:(BOOL)animated{
     
-    if(([defaults objectForKey:@"userName"] != nil) && (currentUser != nil)){
+    if(([defaults objectForKey:@"userName"] != nil) && (currentUser != nil) && (newReachability.isReachable)){
         
         UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
     
@@ -183,13 +188,7 @@
             }];
         }
         
-        
-        
-        
-        
-        
-        
-        
+    
     // **** create a new account button **** //
     }else if(button.tag == 1){
         
@@ -226,6 +225,15 @@
 
 
 
+
+
+// **** when the view disappears **** //
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    
+    //[newReachability stopNotifier];
+    
+}
 
 
 

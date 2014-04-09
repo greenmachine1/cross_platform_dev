@@ -25,6 +25,21 @@
                   clientKey:@"uqZYdwJyr8DJ9LiMhQiKy2683tZsHu36q0nUP7Bp"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
+    // **** reachability class **** //
+    /*
+    newReachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
+    
+    newReachability.reachableOnWWAN = YES;
+    
+    
+    // **** using NSNotificationCenter **** //
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityMethod:) name:kReachabilityChangedNotification object:newReachability];
+    
+    [newReachability startNotifier];
+    
+     */
     return YES;
 }
 							

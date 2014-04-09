@@ -19,6 +19,7 @@
     
     IBOutlet UILabel *wifiLabel;
     IBOutlet UILabel *cellularLabel;
+    IBOutlet UILabel *thirdLine;
     
     IBOutlet UIButton *loginButton;
     IBOutlet UIButton *createAccountButton;
@@ -28,6 +29,8 @@
     NSUserDefaults *defaults;
     
     Reachability *newReachability;
+    
+    BOOL alertHasTriggered;
     
 }
 @end
