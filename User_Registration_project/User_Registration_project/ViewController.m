@@ -76,13 +76,6 @@
     // **** user from going any further if connectivity isnt present **** //
     if(newReachability.isReachable == 0){
         
-        /*
-        UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"No Connection" message:@"Please connect either with WiFi or Cellular connectivity to access Gigbags features" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        
-        
-        [newAlert show];
-         */
-        
         wifiLabel.hidden = NO;
         cellularLabel.hidden = NO;
         thirdLine.hidden = NO;
@@ -106,6 +99,15 @@
         
         [loginButton setEnabled:YES];
         [createAccountButton setEnabled:YES];
+        
+        
+        // **** connect the user to their account **** //
+        if(([defaults objectForKey:@"userName"] != nil) && (currentUser != nil)){
+            
+            UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
+            
+            [self presentViewController:newUserInfo animated:true completion:nil];
+        }
         
     }
     

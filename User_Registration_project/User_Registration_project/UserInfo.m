@@ -75,7 +75,45 @@
 // **** changes in connectivity **** //
 -(void)reachabilityMethod:(NSNotification *)notify{
     
-    NSLog(@"This got called is connected %hhd", reachability.isReachable);
+    // **** if the connectivity becomes available **** //
+    // **** we need to reload the data **** //
+    if(reachability.isReachable == 1){
+        
+        query = [PFQuery queryWithClassName:@"Post"];
+        [query whereKey:@"user" equalTo:user];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            [userInfoArray removeAllObjects];
+            
+            [numberOfMembers removeAllObjects];
+            
+            
+            // **** an error has happened
+            if(error){
+                
+                
+            }else{
+                
+                for(PFObject *object in objects){
+                    NSLog(@"%@", object);
+                    
+                    NSNumber *numberOfMemebersInBand = [object objectForKey:@"bandSize"];
+                    
+                    [userInfoArray addObject:[object objectForKey:@"bandName"]];
+                    
+                    [numberOfMembers addObject:numberOfMemebersInBand];
+                    
+                    
+                    [userInfoTableView reloadData];
+                }
+                
+            }
+            
+            
+        }];
+        
+        
+    }
     
     
 }
