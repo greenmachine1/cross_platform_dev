@@ -52,10 +52,9 @@
 // **** passing in the PFObject and deciding where this call came from **** //
 -(void)passInObject:(PFObject *)object didComeFromEdit:(BOOL)comeFromEdit{
     
-    NSLog(@"The object -->%@", object);
-    NSLog(@"%d", comeFromEdit);
-    
     cameFromEdit = comeFromEdit;
+    
+    editableObject = object;
     
     if(comeFromEdit == TRUE){
     
@@ -117,10 +116,28 @@
         
         
             [self dismissViewControllerAnimated:TRUE completion:nil];
+            
+        // **** if it came from editing band info **** //
+        // **** updating the current entry **** //
         }else{
+        
+            NSLog(@"%@", editableObject);
             
+            NSLog(@"%@", editableObject.objectId);
             
+            NSNumber *numberOfBandMemembers = [NSNumber numberWithInt:numberOfMemebers.text.intValue];
             
+            PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+            [query getObjectInBackgroundWithId:editableObject.objectId block:^(PFObject *object, NSError *error) {
+                
+                object[@"bandName"] = nameOfBandText.text;
+                object[@"bandSize"] = numberOfBandMemembers;
+                object[@"user"] = user;
+                
+                [object saveInBackground];
+            }];
+            
+            [self dismissViewControllerAnimated:TRUE completion:nil];
             
         }
     // **** cancel **** //

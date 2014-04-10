@@ -22,6 +22,8 @@
     
     PFUser *user;
     
+    PFObject *editableObject;
+    
     // **** boolean value to compare as to where **** //
     // **** this class originated from **** //
     BOOL cameFromEdit;
