@@ -114,18 +114,9 @@
                     
                     [userInfoTableView reloadData];
                 }
-                
-                
-                
             }
-            
-            
         }];
-        
-        
     }
-    
-    
 }
 
 
@@ -178,13 +169,8 @@
     // **** if there is not **** //
     }else{
         
-        
-        
-        
-        
-        
-    }
     
+    }
 }
 
 
@@ -246,11 +232,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    NSString *bandNameString = [[NSString alloc] initWithFormat:@"Edit or delege band %@?", [userInfoArray objectAtIndex:indexPath.row]];
+    NSString *bandNameString = [[NSString alloc] initWithFormat:@"Edit or delete band %@?", [userInfoArray objectAtIndex:indexPath.row]];
     
-    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Edit or Delete" message:bandNameString delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Edit", @"Delete", nil];
+    if(reachability.isReachable == 1){
+        
+        UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Edit or Delete" message:bandNameString delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Edit", @"Delete", nil];
     
-    [newAlert show];
+        [newAlert show];
+    }else{
+        
+        UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"No Connection" message:@"Please connect to WiFi or cellular connectivity to Edit or Delete" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        
+        [newAlert show];
+    }
     
     selectedIndex = (int)indexPath.row;
     
@@ -290,8 +284,6 @@
         
             PFQuery *queryObject = [PFQuery queryWithClassName:@"Post"];
             PFObject *objectToBeDeleted = [queryObject getObjectWithId:[idsOfBands objectAtIndex:selectedIndex]];
-        
-            NSLog(@"Object %@", objectToBeDeleted);
         
             [objectToBeDeleted deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             

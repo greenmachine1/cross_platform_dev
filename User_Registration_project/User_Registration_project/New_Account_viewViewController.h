@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Reachability.h"
+
 @interface New_Account_viewViewController : UIViewController<UITextFieldDelegate>
 {
     
@@ -15,6 +17,15 @@
     IBOutlet UITextField *passWord;
     IBOutlet UITextField *email;
     
+    IBOutlet UILabel *firstLine;
+    IBOutlet UILabel *secondLine;
+    IBOutlet UILabel *thirdLine;
+    
+    IBOutlet UIButton *createAccountButton;
+    IBOutlet UIButton *cancelButton;
+    
     NSUserDefaults *defaults;
+    
+    Reachability *reachability;
 }
 @end

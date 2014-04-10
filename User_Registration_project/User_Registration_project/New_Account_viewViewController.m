@@ -25,6 +25,15 @@
         
         defaults = [NSUserDefaults standardUserDefaults];
         
+        reachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
+        
+        reachability.reachableOnWWAN = YES;
+        
+        // **** using NSNotificationCenter **** //
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityMethod:) name:kReachabilityChangedNotification object:nil];
+        
+        [reachability stopNotifier];
+        
         
     }
     return self;
@@ -42,6 +51,40 @@
     userName.clearsOnBeginEditing = true;
     passWord.clearsOnBeginEditing = true;
     email.clearsOnBeginEditing = true;
+}
+
+
+// **** when connectivity changes **** //
+-(void)reachabilityMethod:(NSNotification *)notify{
+    
+    // **** if there is no connectivity **** //
+    if(reachability.isReachable == 0){
+        
+        firstLine.hidden = NO;
+        secondLine.hidden = NO;
+        thirdLine.hidden = NO;
+        
+        userName.hidden = YES;
+        passWord.hidden = YES;
+        email.hidden = YES;
+        
+        createAccountButton.hidden = YES;
+        
+        // **** I want the user to be able to cancel out **** //
+        // **** and go back to the main screen even though **** //
+        // **** they dont have connectivity which is why **** //
+        // **** im not hidding the cancel button **** //
+        
+        
+        
+    // **** if there is connectivity **** //
+    }else{
+        
+        
+        
+        
+    }
+    
 }
 
 
