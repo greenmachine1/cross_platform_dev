@@ -124,10 +124,10 @@
         
             // **** verifying the email address has the "@" and "." **** //
             // **** somewhere in the string **** //
-            NSString *emailString = [[NSString alloc] initWithString:passWord.text];
+            NSString *emailString = [[NSString alloc] initWithString:email.text];
         
             // **** checking the string to make sure its valid **** //
-            if((([emailString rangeOfString:@"@"].location == NSNotFound) && ([emailString rangeOfString:@"."].location == NSNotFound)) || ([email isEqual:@""])){
+            if((([emailString rangeOfString:@"@"].location == NSNotFound) || ([emailString rangeOfString:@"."].location == NSNotFound))){
             
                 UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Email Address Not Valid" message:@"Please enter in a valid Email Address" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             
