@@ -22,6 +22,8 @@
         
         user = [PFUser currentUser];
         
+        cameFromEdit = FALSE;
+        
     }
     return self;
 }
@@ -32,11 +34,14 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    [nameOfBandText setDelegate:self];
-    [numberOfMemebers setDelegate:self];
     
-    nameOfBandText.clearsOnBeginEditing = true;
-    numberOfMemebers.clearsOnBeginEditing = true;
+        [nameOfBandText setDelegate:self];
+        [numberOfMemebers setDelegate:self];
+    
+        nameOfBandText.clearsOnBeginEditing = true;
+        numberOfMemebers.clearsOnBeginEditing = true;
+    
+        [nameOfBandText setText:@"Name of Band"];
     
     
     
@@ -50,18 +55,23 @@
     NSLog(@"The object -->%@", object);
     NSLog(@"%d", comeFromEdit);
     
-}
+    cameFromEdit = comeFromEdit;
+    
+    if(comeFromEdit == TRUE){
+    
+        NSString *bandName = [object objectForKey:@"bandName"];
+    
+        NSNumber *bandSize = [object objectForKey:@"bandSize"];
+    
+        NSString *bandSizeString = [[NSString alloc] initWithFormat:@"%@", bandSize];
+    
+        [nameOfBandText setText:bandName];
+        
+        [numberOfMemebers setText:bandSizeString];
 
-
-// **** passing in the info from UserInfo through a delegate **** //
--(void)passInfoToAddBandInfo:(PFObject *)object cameFromUserInfoOrEdit:(BOOL)infoOrEdit{
     
-    NSLog(@"%@", object);
-    
-    
-    cameFromEdit = infoOrEdit;
-    NSLog(@"%d", cameFromEdit);
-    
+        NSLog(@"in here");
+    }
 }
 
 

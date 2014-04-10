@@ -276,12 +276,12 @@
         
         AddBandInfo *editBandInfo = [[AddBandInfo alloc] initWithNibName:@"AddBandInfo" bundle:nil];
         
-        [editBandInfo passInObject:objectToBeDeleted didComeFromEdit:TRUE];
+        //[editBandInfo passInObject:objectToBeDeleted didComeFromEdit:TRUE];
         
         
         [self presentViewController:editBandInfo animated:true completion:nil];
         
-        
+        [editBandInfo passInObject:objectToBeDeleted didComeFromEdit:TRUE];
 
         
         
