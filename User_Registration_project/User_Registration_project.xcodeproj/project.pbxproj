@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D61164B718F737F700EC5E83 /* iPhone_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = D61164B618F737F700EC5E83 /* iPhone_Background.png */; };
 		D621D02A18F1DF11002DB7CC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D621D02918F1DF11002DB7CC /* Reachability.m */; };
 		D6A97BEE18ED559900D06F8A /* customCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A97BED18ED559900D06F8A /* customCell.m */; };
 		D6A97BF218ED574600D06F8A /* customCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6A97BF118ED574600D06F8A /* customCell.xib */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D61164B618F737F700EC5E83 /* iPhone_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone_Background.png; path = ../../../iPhone_Background.png; sourceTree = "<group>"; };
 		D621D02818F1DF11002DB7CC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D621D02918F1DF11002DB7CC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D6A97BEC18ED559900D06F8A /* customCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customCell.h; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		D6BFC96318EA3024000128B7 /* User_Registration_project */ = {
 			isa = PBXGroup;
 			children = (
+				D61164B618F737F700EC5E83 /* iPhone_Background.png */,
 				D6BFC96C18EA3024000128B7 /* AppDelegate.h */,
 				D6BFC96D18EA3024000128B7 /* AppDelegate.m */,
 				D6BFC96F18EA3024000128B7 /* Main.storyboard */,
@@ -303,6 +306,7 @@
 			files = (
 				D6BFC97618EA3024000128B7 /* Images.xcassets in Resources */,
 				D6BFC96818EA3024000128B7 /* InfoPlist.strings in Resources */,
+				D61164B718F737F700EC5E83 /* iPhone_Background.png in Resources */,
 				D6BFC9B218EBA003000128B7 /* AddBandInfo.xib in Resources */,
 				D6A97BF218ED574600D06F8A /* customCell.xib in Resources */,
 				D6BFC9AD18EA7BC5000128B7 /* UserInfo.xib in Resources */,
