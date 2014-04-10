@@ -121,57 +121,71 @@
 
 
 
-
+// **** once the view comes back from editing, deleting, **** //
+// **** or creation, I need to pull info again to **** //
+// **** repopulate my list **** //
 -(void)viewDidAppear:(BOOL)animated{
+    
+    NSLog(@"Did appear");
     
     // **** if there is a connection **** //
     if(reachability.isReachable == 1){
     
-        query = [PFQuery queryWithClassName:@"Post"];
-        [query whereKey:@"user" equalTo:user];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            
-            NSLog(@"All the objects %@", objects);
-        
-            [userInfoArray removeAllObjects];
-        
-            [numberOfMembers removeAllObjects];
-            
-            [idsOfBands removeAllObjects];
-        
-        
-            // **** an error has happened
-            if(error){
-            
-            
-            }else{
-            
-                for(PFObject *object in objects){
-                    NSLog(@"%@", object);
-                
-                    NSNumber *numberOfMemebersInBand = [object objectForKey:@"bandSize"];
-                
-                    [userInfoArray addObject:[object objectForKey:@"bandName"]];
-                
-                    [numberOfMembers addObject:numberOfMemebersInBand];
-                    
-                    [idsOfBands addObject:object.objectId];
-                
-                    [userInfoTableView reloadData];
-                }
-                NSLog(@"data --> %@", idsOfBands);
-            
-            }
-        
-        
-        }];
-        
-    // **** if there is not **** //
-    }else{
-        
-    
+        [self performSelector:@selector(updateAt:) withObject:nil afterDelay:1.0];
     }
+
 }
+
+
+
+// **** called to update the app **** //
+-(void)updateAt:(NSTimer *)time{
+    
+    NSLog(@"fired");
+    
+    query = [PFQuery queryWithClassName:@"Post"];
+    [query whereKey:@"user" equalTo:user];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        NSLog(@"All the objects %@", objects);
+        
+        [userInfoArray removeAllObjects];
+        
+        [numberOfMembers removeAllObjects];
+        
+        [idsOfBands removeAllObjects];
+        
+        
+        // **** an error has happened
+        if(error){
+            
+            
+        }else{
+            
+            for(PFObject *object in objects){
+                NSLog(@"%@", object);
+                
+                NSNumber *numberOfMemebersInBand = [object objectForKey:@"bandSize"];
+                
+                [userInfoArray addObject:[object objectForKey:@"bandName"]];
+                
+                [numberOfMembers addObject:numberOfMemebersInBand];
+                
+                [idsOfBands addObject:object.objectId];
+                
+                [userInfoTableView reloadData];
+            }
+            NSLog(@"data --> %@", idsOfBands);
+            
+        }
+    }];
+    
+    [newTimer invalidate];
+
+    
+}
+
+
 
 
 

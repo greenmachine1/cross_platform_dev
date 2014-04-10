@@ -21,6 +21,9 @@
     IBOutlet UILabel *cellularLabel;
     IBOutlet UILabel *thirdLine;
     
+    IBOutlet UILabel *userNameLabel;
+    IBOutlet UILabel *passWordLabel;
+    
     IBOutlet UIButton *loginButton;
     IBOutlet UIButton *createAccountButton;
     

@@ -21,6 +21,10 @@
     IBOutlet UILabel *secondLine;
     IBOutlet UILabel *thirdLine;
     
+    IBOutlet UILabel *userNameLabel;
+    IBOutlet UILabel *passwordLabel;
+    IBOutlet UILabel *emailLabel;
+    
     IBOutlet UIButton *createAccountButton;
     IBOutlet UIButton *cancelButton;
     

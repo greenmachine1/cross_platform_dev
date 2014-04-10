@@ -39,6 +39,10 @@
     // **** labels if connectivity is present **** //
     wifiLabel.hidden = YES;
     cellularLabel.hidden = YES;
+    thirdLine.hidden = YES;
+    
+    userNameLabel.hidden = NO;
+    passWordLabel.hidden = NO;
     
     
     
@@ -85,6 +89,9 @@
         userName.hidden = YES;
         passWord.hidden = YES;
         
+        userNameLabel.hidden = YES;
+        passWordLabel.hidden = YES;
+        
         loginButton.hidden = YES;
         createAccountButton.hidden = YES;
         
@@ -98,6 +105,9 @@
         
         userName.hidden = NO;
         passWord.hidden = NO;
+        
+        userNameLabel.hidden = NO;
+        passWordLabel.hidden = NO;
         
         loginButton.hidden = NO;
         createAccountButton.hidden = NO;

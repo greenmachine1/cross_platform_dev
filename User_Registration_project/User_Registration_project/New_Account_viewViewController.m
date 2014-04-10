@@ -52,6 +52,10 @@
     passWord.clearsOnBeginEditing = true;
     email.clearsOnBeginEditing = true;
     
+    userNameLabel.hidden = NO;
+    passwordLabel.hidden = NO;
+    emailLabel.hidden = NO;
+    
     firstLine.hidden = YES;
     secondLine.hidden = YES;
     thirdLine.hidden = YES;
@@ -67,6 +71,10 @@
         firstLine.hidden = NO;
         secondLine.hidden = NO;
         thirdLine.hidden = NO;
+        
+        userNameLabel.hidden = YES;
+        passwordLabel.hidden = YES;
+        emailLabel.hidden = YES;
         
         userName.hidden = YES;
         passWord.hidden = YES;
@@ -88,6 +96,10 @@
         secondLine.hidden = YES;
         thirdLine.hidden = YES;
         
+        userNameLabel.hidden = NO;
+        passwordLabel.hidden = NO;
+        emailLabel.hidden = NO;
+        
         userName.hidden = NO;
         passWord.hidden = NO;
         email.hidden = NO;
@@ -107,6 +119,21 @@
     
     UIButton *button = (UIButton *)sender;
     if(button.tag == 0){
+        
+        
+        
+        // **** verifying the email address has the "@" and "." **** //
+        // **** somewhere in the string **** //
+        NSString *emailString = [[NSString alloc] initWithString:passWord.text];
+        
+        // **** checking the string to make sure its valid **** //
+        if((([emailString rangeOfString:@"@"].location == NSNotFound) && ([emailString rangeOfString:@"."].location == NSNotFound)) || ([email isEqual:@""])){
+            
+            UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Email Not Valid" message:@"Please enter in a valid Email Address" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            
+            [newAlert show];
+            
+        }else{
         
         
         // **** setting up the user account info **** //
@@ -138,7 +165,7 @@
             }
             
         }];
-        
+    }
         
         
         

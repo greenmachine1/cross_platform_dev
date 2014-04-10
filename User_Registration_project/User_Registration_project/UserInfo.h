@@ -34,6 +34,8 @@
     
     int selectedIndex;
     
+    NSTimer *newTimer;
+    
 
 }
 

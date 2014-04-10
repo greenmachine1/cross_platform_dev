@@ -9,11 +9,14 @@
                 <outlet property="cancelButton" destination="TsE-cy-cRF" id="yoG-o6-3WG"/>
                 <outlet property="createAccountButton" destination="Nwo-H0-YnE" id="Ajp-cg-saz"/>
                 <outlet property="email" destination="m5K-m6-o4A" id="lQx-7T-eiA"/>
+                <outlet property="emailLabel" destination="IH1-4r-5dm" id="JJa-uN-mGv"/>
                 <outlet property="firstLine" destination="e95-vq-LLX" id="Naz-2h-FOk"/>
                 <outlet property="passWord" destination="QkA-uo-XfY" id="Usk-3I-xTc"/>
+                <outlet property="passwordLabel" destination="uhg-2i-o1I" id="sE4-KV-sgd"/>
                 <outlet property="secondLine" destination="gqH-wU-NBj" id="O2Q-O4-3ib"/>
                 <outlet property="thirdLine" destination="mUA-vA-pBp" id="JIK-xo-U4A"/>
                 <outlet property="userName" destination="Q5b-l2-ihi" id="1cO-5Z-qJK"/>
+                <outlet property="userNameLabel" destination="NxJ-63-xdL" id="XSj-TK-6Op"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwo-H0-YnE">
-                    <rect key="frame" x="20" y="369" width="280" height="46"/>
+                    <rect key="frame" x="20" y="395" width="280" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="0.75822537489999997" blue="0.69118411580000005" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Create Account">
@@ -67,7 +70,7 @@
                     <rect key="frame" x="20" y="269" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please connect to Either Wifi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e95-vq-LLX">
                     <rect key="frame" x="50" y="164" width="221" height="21"/>
@@ -92,6 +95,24 @@
                     <rect key="frame" x="116" y="222" width="88" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NxJ-63-xdL">
+                    <rect key="frame" x="117" y="90" width="86" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhg-2i-o1I">
+                    <rect key="frame" x="128" y="170" width="64" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IH1-4r-5dm">
+                    <rect key="frame" x="114" y="245" width="93" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

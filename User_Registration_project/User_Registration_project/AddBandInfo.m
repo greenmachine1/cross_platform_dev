@@ -82,7 +82,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [nameOfBandText resignFirstResponder];
-    [numberOfMemebers resignFirstResponder];
+    
     
     
     return TRUE;
@@ -110,7 +110,8 @@
             post[@"bandSize"] = numberOfBandMemembers;
             post[@"user"] = user;
         
-        
+            
+            
             // **** just in case the user looses connectivity **** //
             [post saveInBackground];
         
@@ -128,6 +129,7 @@
             NSNumber *numberOfBandMemembers = [NSNumber numberWithInt:numberOfMemebers.text.intValue];
             
             PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+            
             [query getObjectInBackgroundWithId:editableObject.objectId block:^(PFObject *object, NSError *error) {
                 
                 object[@"bandName"] = nameOfBandText.text;
@@ -135,6 +137,7 @@
                 object[@"user"] = user;
                 
                 [object saveInBackground];
+                
             }];
             
             [self dismissViewControllerAnimated:TRUE completion:nil];
@@ -145,7 +148,16 @@
         
         [self dismissViewControllerAnimated:TRUE completion:nil];
         
+        
+    // **** this is for the done button on the **** //
+    // **** enter how many band memebers field **** //
+    }else if (button.tag == 2){
+        
+        [numberOfMemebers resignFirstResponder];
+        
     }
+    
+    
     
     
 }
