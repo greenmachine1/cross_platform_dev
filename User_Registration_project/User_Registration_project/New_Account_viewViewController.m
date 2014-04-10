@@ -51,6 +51,10 @@
     userName.clearsOnBeginEditing = true;
     passWord.clearsOnBeginEditing = true;
     email.clearsOnBeginEditing = true;
+    
+    firstLine.hidden = YES;
+    secondLine.hidden = YES;
+    thirdLine.hidden = YES;
 }
 
 
@@ -80,7 +84,15 @@
     // **** if there is connectivity **** //
     }else{
         
+        firstLine.hidden = YES;
+        secondLine.hidden = YES;
+        thirdLine.hidden = YES;
         
+        userName.hidden = NO;
+        passWord.hidden = NO;
+        email.hidden = NO;
+        
+        createAccountButton.hidden = NO;
         
         
     }
