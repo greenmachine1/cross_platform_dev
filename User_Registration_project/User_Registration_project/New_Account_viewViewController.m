@@ -120,53 +120,60 @@
     UIButton *button = (UIButton *)sender;
     if(button.tag == 0){
         
+        if(!([userName.text isEqualToString:@""] || ([passWord.text isEqualToString:@""]))){
         
+            // **** verifying the email address has the "@" and "." **** //
+            // **** somewhere in the string **** //
+            NSString *emailString = [[NSString alloc] initWithString:passWord.text];
         
-        // **** verifying the email address has the "@" and "." **** //
-        // **** somewhere in the string **** //
-        NSString *emailString = [[NSString alloc] initWithString:passWord.text];
-        
-        // **** checking the string to make sure its valid **** //
-        if((([emailString rangeOfString:@"@"].location == NSNotFound) && ([emailString rangeOfString:@"."].location == NSNotFound)) || ([email isEqual:@""])){
+            // **** checking the string to make sure its valid **** //
+            if((([emailString rangeOfString:@"@"].location == NSNotFound) && ([emailString rangeOfString:@"."].location == NSNotFound)) || ([email isEqual:@""])){
             
-            UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Email Not Valid" message:@"Please enter in a valid Email Address" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Email Address Not Valid" message:@"Please enter in a valid Email Address" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            
+                [newAlert show];
+        
+            }else{
+        
+                // **** setting up the user account info **** //
+                PFUser *user = [PFUser user];
+                user.username = userName.text;
+                user.password = passWord.text;
+                user.email = email.text;
+        
+        
+                // **** the sign up portion **** //
+                [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            
+                    // **** successful creation of user **** //
+                    if(!error){
+                        NSLog(@"Successful creation of account");
+                
+                
+                        // **** go to userinfo screen **** //
+                        UserInfo *newUserInfoScreen = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
+                        [self presentViewController:newUserInfoScreen animated:TRUE completion:nil];
+                
+                
+                        // **** something happened and it work **** //
+                    }else{
+                
+                        NSLog(@"There was an error in creating this account");
+                        NSLog(@"%@", error);
+                
+                    }
+            
+                }];
+            }
+            
+        // **** user name and pass word fields are blank **** //
+        }else{
+            
+            UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"User name and Password Invalid" message:@"Please enter your User name and Password" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             
             [newAlert show];
             
-        }else{
-        
-        
-        // **** setting up the user account info **** //
-        PFUser *user = [PFUser user];
-        user.username = userName.text;
-        user.password = passWord.text;
-        user.email = email.text;
-        
-        
-        // **** the sign up portion **** //
-        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            
-            // **** successful creation of user **** //
-            if(!error){
-                NSLog(@"Successful creation of account");
-                
-                
-                // **** go to userinfo screen **** //
-                UserInfo *newUserInfoScreen = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
-                [self presentViewController:newUserInfoScreen animated:TRUE completion:nil];
-                
-                
-            // **** something happened and it work **** //
-            }else{
-                
-                NSLog(@"There was an error in creating this account");
-                NSLog(@"%@", error);
-                
-            }
-            
-        }];
-    }
-        
+        }
         
         
     

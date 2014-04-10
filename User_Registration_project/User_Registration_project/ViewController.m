@@ -167,8 +167,9 @@
         // **** making sure the user has entered info **** //
         if(([userName.text isEqual:@""]) || ([passWord.text isEqual:@""])){
             
+            UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"User name and Password Invalid" message:@"Please enter your User name and Password" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             
-            NSLog(@"Please enter a username and password");
+            [newAlert show];
             
         }else{
             
@@ -194,7 +195,9 @@
                 // **** if it is not **** //
                 }else{
                     
-                    NSLog(@"Please try again");
+                    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid login credentials. Please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    
+                    [newAlert show];
                     
                 }
                 
