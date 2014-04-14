@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
+import com.parse.ParseObject;
 
 
 public class MainActivity extends Activity {
@@ -29,11 +30,17 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        context = this;
+        
         // **** initializing my parse stuff **** //
         Parse.initialize(context, "qpsrDDopYR4JfloQD3IMCm5oEAn9D0kAFoX0Xmec", 
         		"uqZYdwJyr8DJ9LiMhQiKy2683tZsHu36q0nUP7Bp");
         
-        context = this;
+        
+        
+        
+        
+        
         
         // **** pinpointing the username and passwords **** //
         userName = (EditText)findViewById(R.id.user_name_edit_text);
@@ -49,6 +56,10 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 				Log.i("Log in clicked", "Yes");
+				
+				ParseObject testObject = new ParseObject("TestObject");
+		        testObject.put("foo", "Came from android");
+		        testObject.saveInBackground();
 				
 			}
         	
