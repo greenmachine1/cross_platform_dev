@@ -131,7 +131,7 @@
     // **** if there is a connection **** //
     if(reachability.isReachable == 1){
     
-        [self performSelector:@selector(updateAt:) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(updateAt:) withObject:nil afterDelay:5.0];
     }
 
 }

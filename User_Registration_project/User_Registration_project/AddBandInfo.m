@@ -28,6 +28,10 @@
     return self;
 }
 
+
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -156,10 +160,6 @@
         [numberOfMemebers resignFirstResponder];
         
     }
-    
-    
-    
-    
 }
 
 

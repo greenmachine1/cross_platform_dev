@@ -71,13 +71,6 @@
 // **** is detected **** //
 -(void)reachabilityMethod:(NSNotification *)notify{
     
-    NSLog(@"Changed");
-    
-    NSLog(@"Wifi connection status %hhd", newReachability.isReachableViaWiFi);
-    NSLog(@"cellular connection status %hhd", newReachability.isReachableViaWWAN);
-    NSLog(@"is connected at all %hhd", newReachability.isReachable);
-    
-    
     // **** basically testing to see which connection is available and blocking the **** //
     // **** user from going any further if connectivity isnt present **** //
     if(newReachability.isReachable == 0){
@@ -182,8 +175,6 @@
                     
                     UserInfo *newUserInfo = [[UserInfo alloc] initWithNibName:@"UserInfo" bundle:nil];
                     [self presentViewController:newUserInfo animated:TRUE completion:nil];
-                    
-                    
                     
                     // **** setting the current user to be saved **** //
                     [defaults setObject:user.username forKey:@"userName"];
