@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
 
 
 public class MainActivity extends Activity {
@@ -26,6 +28,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        // **** initializing my parse stuff **** //
+        Parse.initialize(context, "qpsrDDopYR4JfloQD3IMCm5oEAn9D0kAFoX0Xmec", 
+        		"uqZYdwJyr8DJ9LiMhQiKy2683tZsHu36q0nUP7Bp");
         
         context = this;
         
