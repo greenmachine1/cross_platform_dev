@@ -28,6 +28,7 @@
         </activity>
         <activity android:name="New_Account"
             android:screenOrientation="portrait"></activity>
+        <activity android:name="User_Info"></activity>
     </application>
 
 </manifest>

@@ -10,9 +10,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 
 public class MainActivity extends Activity {
@@ -37,11 +41,6 @@ public class MainActivity extends Activity {
         		"uqZYdwJyr8DJ9LiMhQiKy2683tZsHu36q0nUP7Bp");
         
         
-        
-        
-        
-        
-        
         // **** pinpointing the username and passwords **** //
         userName = (EditText)findViewById(R.id.user_name_edit_text);
         password = (EditText)findViewById(R.id.password_edit_text);
@@ -55,11 +54,30 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				Log.i("Log in clicked", "Yes");
+				// **** getting the user info **** //
+				String userNameString = userName.getText().toString();
+				String passwordString = password.getText().toString();
 				
-				ParseObject testObject = new ParseObject("TestObject");
-		        testObject.put("foo", "Came from android");
-		        testObject.saveInBackground();
+				// **** sending it to the parse server **** //
+				ParseUser.logInInBackground(userNameString, passwordString, new LogInCallback() {
+					
+					@Override
+					public void done(ParseUser user, ParseException e) {
+						
+						// **** if the user exsists! **** //
+						if(user != null){
+							
+							Intent userInfoIntent = new Intent(context, User_Info.class);
+							
+							
+						// **** if not! **** //	
+						}else{
+							
+							Log.i("User isnt there", "nope");
+						}
+					}
+				});
+
 				
 			}
         	
