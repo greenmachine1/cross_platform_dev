@@ -1,5 +1,7 @@
 package com.Cory.gigbag;
 
+import java.io.Serializable;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -69,6 +71,10 @@ public class MainActivity extends Activity {
 							
 							Intent userInfoIntent = new Intent(context, User_Info.class);
 							
+							// **** inserting the userID
+							userInfoIntent.putExtra("objectID", user.getObjectId());
+						
+							startActivity(userInfoIntent);
 							
 						// **** if not! **** //	
 						}else{
