@@ -56,8 +56,6 @@ public class MainActivity extends Activity {
         	
 			startActivity(userInfoIntent);
         	
-        }else{
-        	
         }
         
         

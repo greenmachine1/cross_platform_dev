@@ -1,5 +1,6 @@
 package com.Cory.gigbag;
 
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -21,6 +22,9 @@ public class User_Info extends Activity{
 	Context context;
 	
 	Button logOutButton;
+	
+	HashMap<String, String> nameOfBands;
+	HashMap<String, String> sizeOfBands;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +35,11 @@ public class User_Info extends Activity{
       
         ParseUser user = ParseUser.getCurrentUser();
         
-        Log.i("User", user.getUsername().toString());
+        nameOfBands = new HashMap<String, String>();
+        sizeOfBands = new HashMap<String, String>();
         
+        // **** gathering up all the users info and putting it **** //
+        // **** into hashMaps **** //
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
         query.whereEqualTo("user", user);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -42,15 +49,29 @@ public class User_Info extends Activity{
 				// TODO Auto-generated method stub
 				if(e == null){
 					
+					nameOfBands.clear();
+					sizeOfBands.clear();
+					
 					int amountOfObjects = listOfObjects.size();
 					
+					// **** cycling through the objects **** //
 					for(int i = 0; i < amountOfObjects; i++){
 					
 						// **** successfully gets the bandNames and their sizes of all the objects **** //
-						Log.i("Band name", "" + listOfObjects.get(i).getString("bandName"));
-						Log.i("size", "" + listOfObjects.get(i).getInt("bandSize"));
+						String bandName = listOfObjects.get(i).getString("bandName");
+						int bandSize = listOfObjects.get(i).getInt("bandSize");
+						
+						// **** saving the band name in a hashmap **** // 
+						nameOfBands.put(bandName, bandName);
+						
+						// **** saving the band size in a hashmap **** //
+						sizeOfBands.put(bandName, "" + bandSize);
 					}
+					
+					Log.i("band and size", nameOfBands.toString() + "" + sizeOfBands.toString());
+					
 				}else{
+					
 					Log.i("error", e.getMessage().toString());
 				}
 			}
@@ -65,8 +86,6 @@ public class User_Info extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
 				
 				// **** logging out the user **** //
 				ParseUser.logOut();
