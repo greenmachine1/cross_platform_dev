@@ -1,6 +1,6 @@
 package com.Cory.gigbag;
 
-import java.io.Serializable;
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,9 +15,7 @@ import android.widget.EditText;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
-import com.parse.ParseAnalytics;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 
@@ -48,15 +46,14 @@ public class MainActivity extends Activity {
         password = (EditText)findViewById(R.id.password_edit_text);
         
         
+        // **** checking to see if there is a user still **** //
+        // **** logged in **** //
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser != null){
         	
-        	Log.i("user is here", currentUser.getUsername().toString());
-        	
+        	// **** starting the user info activity **** //
         	Intent userInfoIntent = new Intent(context, User_Info.class);
-			// **** inserting the userID
-			userInfoIntent.putExtra("objectID", currentUser.getObjectId());
-		
+        	
 			startActivity(userInfoIntent);
         	
         }else{
@@ -87,10 +84,8 @@ public class MainActivity extends Activity {
 						// **** if the user exsists! **** //
 						if(user != null){
 							
+							// **** starting the user info activity **** //
 							Intent userInfoIntent = new Intent(context, User_Info.class);
-							
-							// **** inserting the userID
-							userInfoIntent.putExtra("objectID", user.getObjectId());
 						
 							startActivity(userInfoIntent);
 							
