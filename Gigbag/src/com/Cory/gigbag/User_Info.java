@@ -3,9 +3,9 @@ package com.Cory.gigbag;
 import java.util.HashMap;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,7 +17,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-public class User_Info extends Activity{
+
+public class User_Info extends FragmentActivity{
 	
 	Context context;
 	
@@ -26,8 +27,7 @@ public class User_Info extends Activity{
 	HashMap<String, String> nameOfBands;
 	HashMap<String, String> sizeOfBands;
 
-	@Override
-    protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_info);
         
