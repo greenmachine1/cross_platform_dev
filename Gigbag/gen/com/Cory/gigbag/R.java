@@ -26,12 +26,13 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f080000;
-        public static final int action_settings=0x7f08000e;
+        public static final int action_settings=0x7f08000f;
         public static final int button1=0x7f080006;
         public static final int button2=0x7f080007;
         public static final int create_account_button_account_create=0x7f08000d;
         public static final int email_account_create_text=0x7f08000b;
         public static final int email_edit_text=0x7f08000c;
+        public static final int log_out_button_user_info=0x7f08000e;
         public static final int main_create_account_text=0x7f080008;
         public static final int password_account_create_text=0x7f08000a;
         public static final int password_edit_text=0x7f080005;

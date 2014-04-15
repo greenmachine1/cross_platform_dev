@@ -48,6 +48,24 @@ public class MainActivity extends Activity {
         password = (EditText)findViewById(R.id.password_edit_text);
         
         
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if(currentUser != null){
+        	
+        	Log.i("user is here", currentUser.getUsername().toString());
+        	
+        	Intent userInfoIntent = new Intent(context, User_Info.class);
+			// **** inserting the userID
+			userInfoIntent.putExtra("objectID", currentUser.getObjectId());
+		
+			startActivity(userInfoIntent);
+        	
+        }else{
+        	
+        }
+        
+        
+        
+        
         // **** the logInButtons onclicklistener **** //
         logInButton = (Button)findViewById(R.id.button1);
         logInButton.setOnClickListener(new OnClickListener(){
