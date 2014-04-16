@@ -1,5 +1,6 @@
 package com.Cory.gigbag;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -23,12 +25,32 @@ public class User_info_List_Fragment extends Fragment{
 	
 	HashMap<String, String> bandName;
 	HashMap<String, String> bandSize;
+	
+	ListView mainListView;
+	
+	// **** setting the adapter **** //
+	Main_list_adapter adapter;
+	
+	// **** declaring the adapter array list **** //
+	public ArrayList<Main_list_definition> bandNameAndSizeList = new ArrayList<Main_list_definition>();
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
 		View view;
 		view = inflater.inflate(R.layout.list_for_fragment, container, false);
+		
+		
+		
+		// **** targetting the main listview **** //
+		mainListView = (ListView)getActivity().findViewById(R.id.main_listView);
+		
+		
+		
+		// **** final bridging of the adapter **** //
+		adapter = new Main_list_adapter(getActivity(), R.layout.item_for_list, bandNameAndSizeList);
+		
+		
 		
 		bandName = new HashMap<String, String>();
 		bandSize = new HashMap<String, String>();
@@ -66,6 +88,8 @@ public class User_info_List_Fragment extends Fragment{
 						bandSize.put(bandNameString, "" + bandSizeString);
 					}
 					
+					
+					
 					Log.i("band and size", bandName.toString() + "" + bandSize.toString());
 					
 				}else{
@@ -74,11 +98,19 @@ public class User_info_List_Fragment extends Fragment{
 				}
 			}
 		});
+        
+        
+        bandNameAndSizeList.clear();
 		
+		for(int i = 0; i < bandName.size(); i++){
+			Main_list_definition item = new Main_list_definition(bandName.get(i).toString(), bandSize.get(i).toString());
+			bandNameAndSizeList.add(item);
+			adapter.notifyDataSetChanged();
+		}
+       
 		
-		
-		
-		
+		// **** having an issue here **** //
+		mainListView.setAdapter(adapter);
 		
 		
 		return view;
