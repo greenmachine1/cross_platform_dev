@@ -92,7 +92,6 @@ public class User_info_List_Fragment extends Fragment{
 						// **** adding names to the listOfNames array **** //
 						listOfNames.add(bandNameString);
 					
-				
 					}
 					
 					adapter.notifyDataSetChanged();
@@ -117,8 +116,6 @@ public class User_info_List_Fragment extends Fragment{
 
 		// **** setting the mainlist to hold the adapter **** //
 		mainListView.setAdapter(adapter);
-
-		
 		
 		return view;
 	}
