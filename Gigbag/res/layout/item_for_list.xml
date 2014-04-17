@@ -11,6 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="27dp"
+        android:textSize="20dp"
         android:text="Band Name" />
 
     <TextView
@@ -20,6 +21,8 @@
         android:layout_alignLeft="@+id/band_name_text_xml"
         android:layout_below="@+id/band_name_text_xml"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="20dp"
         android:text="Number of Members" />
 
 </RelativeLayout>

@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -58,6 +63,8 @@ public class User_info_List_Fragment extends Fragment{
 		// **** getting the current user **** //
 		ParseUser user = ParseUser.getCurrentUser();
 		
+		
+		
 		// **** gathering up all the users info and putting it **** //
         // **** into hashMaps **** //
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
@@ -105,7 +112,8 @@ public class User_info_List_Fragment extends Fragment{
 				for(int i = 0; i < listOfNames.size(); i++){
 					
 					//Main_list_definition item = new Main_list_definition(bandName.get(i - 1).toString(), bandSize.get(i - 1).toString());
-					Main_list_definition item = new Main_list_definition("Name of Band: " + bandName.get(listOfNames.get(i)).toString(), "Size of Band: " + bandSize.get(listOfNames.get(i)).toString());
+					Main_list_definition item = new Main_list_definition("Band Name: " + bandName.get(listOfNames.get(i)).toString(),
+																		 "Number of Members: " + bandSize.get(listOfNames.get(i)).toString());
 					bandNameAndSizeList.add(item);
 					adapter.notifyDataSetChanged();
 				}
@@ -116,6 +124,49 @@ public class User_info_List_Fragment extends Fragment{
 
 		// **** setting the mainlist to hold the adapter **** //
 		mainListView.setAdapter(adapter);
+		
+		// **** the onItemClickListener for the main View **** //
+		mainListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int item,
+					long arg3) {
+				
+				Log.i("Selected", "" + item);
+				
+				// **** setting up the edit and delete functionality **** //
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				
+				// **** Cancel, delete, and edit buttons
+				builder.setMessage("Edit or Delete band " + listOfNames.get(item)).
+						setTitle("Edit or Delete").
+						setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								Log.i("Ok clicked", "Yes");
+								dialog.cancel();
+							}
+						}).setNeutralButton("Delete", new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								Log.i("Ok clicked", "Yes");
+								dialog.cancel();
+							}
+						}).setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								Log.i("Ok clicked", "yes");
+								dialog.cancel();
+							}
+						}).show();
+			}
+		});
 		
 		return view;
 	}

@@ -28,7 +28,9 @@
         </activity>
         <activity android:name="New_Account"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="User_Info"></activity>
+        <activity android:name="User_Info"
+            android:label="List of Bands"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
