@@ -26,10 +26,13 @@ public class User_info_List_Fragment extends Fragment{
 	HashMap<String, String> bandName;
 	HashMap<String, String> bandSize;
 	
+	ArrayList<String> listOfNames;
+	
 	ListView mainListView;
 	
 	// **** setting the adapter **** //
 	Main_list_adapter adapter;
+	
 	
 	// **** declaring the adapter array list **** //
 	public ArrayList<Main_list_definition> bandNameAndSizeList = new ArrayList<Main_list_definition>();
@@ -37,24 +40,21 @@ public class User_info_List_Fragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
+		bandName = new HashMap<String, String>();
+		bandSize = new HashMap<String, String>();
+		listOfNames = new ArrayList<String>();
+
+	
+		
 		View view;
 		view = inflater.inflate(R.layout.list_for_fragment, container, false);
 		
-		
-		
 		// **** targetting the main listview **** //
-		mainListView = (ListView)getActivity().findViewById(R.id.main_listView);
-		
-		
+		mainListView = (ListView)view.findViewById(R.id.main_listView);
 		
 		// **** final bridging of the adapter **** //
 		adapter = new Main_list_adapter(getActivity(), R.layout.item_for_list, bandNameAndSizeList);
-		
-		
-		
-		bandName = new HashMap<String, String>();
-		bandSize = new HashMap<String, String>();
-		
+
 		// **** getting the current user **** //
 		ParseUser user = ParseUser.getCurrentUser();
 		
@@ -69,8 +69,10 @@ public class User_info_List_Fragment extends Fragment{
 				// TODO Auto-generated method stub
 				if(e == null){
 					
+					
 					bandName.clear();
 					bandSize.clear();
+					listOfNames.clear();
 					
 					int amountOfObjects = listOfObjects.size();
 					
@@ -86,31 +88,36 @@ public class User_info_List_Fragment extends Fragment{
 						
 						// **** saving the band size in a hashmap **** //
 						bandSize.put(bandNameString, "" + bandSizeString);
+						
+						// **** adding names to the listOfNames array **** //
+						listOfNames.add(bandNameString);
+					
+				
 					}
 					
-					
-					
-					Log.i("band and size", bandName.toString() + "" + bandSize.toString());
+					adapter.notifyDataSetChanged();
 					
 				}else{
 					
 					Log.i("error", e.getMessage().toString());
 				}
+
+				// **** able to add bands to the adapter and be displayed
+				for(int i = 0; i < listOfNames.size(); i++){
+					
+					//Main_list_definition item = new Main_list_definition(bandName.get(i - 1).toString(), bandSize.get(i - 1).toString());
+					Main_list_definition item = new Main_list_definition("Name of Band: " + bandName.get(listOfNames.get(i)).toString(), "Size of Band: " + bandSize.get(listOfNames.get(i)).toString());
+					bandNameAndSizeList.add(item);
+					adapter.notifyDataSetChanged();
+				}
+				
 			}
+
 		});
-        
-        
-        bandNameAndSizeList.clear();
-		
-		for(int i = 0; i < bandName.size(); i++){
-			Main_list_definition item = new Main_list_definition(bandName.get(i).toString(), bandSize.get(i).toString());
-			bandNameAndSizeList.add(item);
-			adapter.notifyDataSetChanged();
-		}
-       
-		
-		// **** having an issue here **** //
+
+		// **** setting the mainlist to hold the adapter **** //
 		mainListView.setAdapter(adapter);
+
 		
 		
 		return view;

@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Main_list_adapter extends ArrayAdapter<Main_list_definition>{
@@ -33,13 +32,13 @@ public class Main_list_adapter extends ArrayAdapter<Main_list_definition>{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		View row = convertView;
-		FavoritesAdapterHolder holder = null;
+		MainListAdapterHolder holder = null;
 		if(row == null){
 			
 			LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 			row = inflater.inflate(layoutId, parent, false);
 			
-			holder = new FavoritesAdapterHolder();
+			holder = new MainListAdapterHolder();
 			holder.bandNameTitle = (TextView)row.findViewById(R.id.band_name_text_xml);
 			holder.bandSizeTitle = (TextView)row.findViewById(R.id.band_size_text_xml);
 			
@@ -47,7 +46,7 @@ public class Main_list_adapter extends ArrayAdapter<Main_list_definition>{
 			
 		}else{
 			
-			holder = (FavoritesAdapterHolder)row.getTag();
+			holder = (MainListAdapterHolder)row.getTag();
 		}
 		Main_list_definition ingredients_adapter = getItem(position);
 		
@@ -57,7 +56,7 @@ public class Main_list_adapter extends ArrayAdapter<Main_list_definition>{
 		return row;
 	}
 	
-	static class FavoritesAdapterHolder{
+	static class MainListAdapterHolder{
 		TextView bandNameTitle;
 		TextView bandSizeTitle;
 	}
