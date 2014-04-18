@@ -23,7 +23,7 @@ public class User_Info extends FragmentActivity{
         
         context = this;
       
-        ParseUser user = ParseUser.getCurrentUser();
+        //ParseUser user = ParseUser.getCurrentUser();
      
         // **** the logout button **** //
         logOutButton = (Button)findViewById(R.id.log_out_button_user_info);

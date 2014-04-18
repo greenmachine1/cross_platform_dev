@@ -27,13 +27,13 @@ public final class R {
     public static final class id {
         public static final int RelativeLayout1=0x7f080006;
         public static final int action_settings=0x7f080015;
+        public static final int band_name_add_or_edit=0x7f080001;
         public static final int band_name_text_xml=0x7f080003;
+        public static final int band_size_add_or_edit=0x7f080000;
         public static final int band_size_text_xml=0x7f080004;
         public static final int button1=0x7f080002;
         public static final int button2=0x7f08000c;
         public static final int create_account_button_account_create=0x7f080012;
-        public static final int editText1=0x7f080000;
-        public static final int editText2=0x7f080001;
         public static final int email_account_create_text=0x7f080010;
         public static final int email_edit_text=0x7f080011;
         public static final int fragment1=0x7f080014;

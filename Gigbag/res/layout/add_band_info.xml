@@ -5,35 +5,38 @@
     android:background="@drawable/background" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/band_size_add_or_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="51dp"
-        android:ems="10" >
+        android:layout_below="@+id/band_name_add_or_edit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:ems="10"
+        android:hint="Band Size" >
 
-        <requestFocus />
+        
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/band_name_add_or_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="43dp"
-        android:ems="10" />
+        android:layout_alignLeft="@+id/band_size_add_or_edit"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="81dp"
+        android:ems="10"
+        android:hint="Band Name" >
+    <requestFocus />
 
+    </EditText>
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_marginBottom="83dp"
+        android:layout_alignLeft="@+id/band_size_add_or_edit"
+        android:layout_alignRight="@+id/band_size_add_or_edit"
+        android:layout_below="@+id/band_size_add_or_edit"
+        android:layout_marginTop="78dp"
         android:text="Done" />
 
 </RelativeLayout>

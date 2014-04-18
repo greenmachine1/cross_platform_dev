@@ -31,6 +31,7 @@
         <activity android:name="User_Info"
             android:label="List of Bands"
             android:screenOrientation="portrait"></activity>
+        <activity android:name="Add_band_info"></activity>
     </application>
 
 </manifest>
