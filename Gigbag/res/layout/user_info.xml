@@ -8,9 +8,9 @@
         android:id="@+id/log_out_button_user_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
+        android:layout_alignLeft="@+id/add_band_info_button"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/button1"
+        android:layout_alignRight="@+id/add_band_info_button"
         android:layout_marginBottom="21dp"
         android:text="Log Out" />
 
@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/add_band_info_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/log_out_button_user_info"

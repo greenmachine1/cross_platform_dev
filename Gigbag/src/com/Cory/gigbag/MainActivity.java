@@ -35,11 +35,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
         
         context = this;
-        
-        // **** initializing my parse stuff **** //
-        Parse.initialize(context, "qpsrDDopYR4JfloQD3IMCm5oEAn9D0kAFoX0Xmec", 
-        		"uqZYdwJyr8DJ9LiMhQiKy2683tZsHu36q0nUP7Bp");
-        
+
         
         // **** pinpointing the username and passwords **** //
         userName = (EditText)findViewById(R.id.user_name_edit_text);

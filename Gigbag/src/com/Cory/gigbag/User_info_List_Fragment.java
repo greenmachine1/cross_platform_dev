@@ -33,6 +33,7 @@ public class User_info_List_Fragment extends Fragment{
 	HashMap<String, String> bandSize;
 	
 	ArrayList<String> listOfNames;
+	ArrayList<ParseObject> objects;
 	
 	ListView mainListView;
 	
@@ -52,6 +53,7 @@ public class User_info_List_Fragment extends Fragment{
 		bandName = new HashMap<String, String>();
 		bandSize = new HashMap<String, String>();
 		listOfNames = new ArrayList<String>();
+		objects = new ArrayList<ParseObject>();
 
 		View view;
 		view = inflater.inflate(R.layout.list_for_fragment, container, false);
@@ -102,6 +104,11 @@ public class User_info_List_Fragment extends Fragment{
 							public void onClick(DialogInterface dialog, int which) {
 								// TODO Auto-generated method stub
 								Log.i("Ok clicked", "Yes");
+								
+								objects.get(itemInt).deleteInBackground();
+								
+								loadData();
+								
 								dialog.cancel();
 							}
 						}).setNegativeButton("Edit", new DialogInterface.OnClickListener() {
@@ -119,6 +126,7 @@ public class User_info_List_Fragment extends Fragment{
 								// **** passing in the name of the band **** //
 								editIntent.putExtra("nameOfBand", nameString);
 								editIntent.putExtra("bandSize", bandSize.get(listOfNames.get(itemInt)).toString());
+								editIntent.putExtra("idString", objects.get(itemInt).getObjectId());
 								editIntent.putExtra("cameFromEdit", "Yes");
 								
 								startActivity(editIntent);
@@ -129,6 +137,8 @@ public class User_info_List_Fragment extends Fragment{
 		return view;
 	}
 
+	
+	
 	// **** loading up the data **** //
 	public void loadData(){
 
@@ -147,6 +157,8 @@ public class User_info_List_Fragment extends Fragment{
 					listOfNames.clear();
 					bandNameAndSizeList.clear();
 					
+					objects.clear();
+					
 					int amountOfObjects = listOfObjects.size();
 					
 					// **** cycling through the objects **** //
@@ -164,8 +176,12 @@ public class User_info_List_Fragment extends Fragment{
 						
 						// **** adding names to the listOfNames array **** //
 						listOfNames.add(bandNameString);
+						
+						objects.add(listOfObjects.get(i));
 					
 					}
+					
+					
 					
 					// **** after loading everything into the hashmaps **** //
 					// **** notify the adapter **** //
@@ -188,6 +204,9 @@ public class User_info_List_Fragment extends Fragment{
 			}
 		});
 	}
+	
+	
+	
 	
 	@Override
 	public void onResume() {
