@@ -150,10 +150,7 @@ public class MainActivity extends Activity {
 				startActivity(new_account_intent);
 				
 			}
-        	
         });
-        
-        
     }
 
 
