@@ -3,8 +3,10 @@ package com.Cory.gigbag;
 
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -35,6 +37,10 @@ public class MainActivity extends Activity {
 	Context context;
 	
 	ConnectivityManager cm;
+	
+	NetworkInfo activeNetwork;
+	
+	boolean isConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +51,10 @@ public class MainActivity extends Activity {
 
         // **** gathering connection status **** //
         cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        //activeNetwork = cm.getActiveNetworkInfo();
+        activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        isConnected = activeNetwork != null && activeNetwork.isConnected();
         
         // **** pinpointing the username and passwords **** //
         userName = (EditText)findViewById(R.id.user_name_edit_text);
@@ -58,26 +66,9 @@ public class MainActivity extends Activity {
         logInButton = (Button)findViewById(R.id.button1);
         createNewAccountButton = (Button)findViewById(R.id.button2);
         
-        if(isConnected == true){
-        	
-        	userNameTextView.setVisibility(View.VISIBLE);
-        	passwordTextView.setVisibility(View.VISIBLE);
-        	userName.setVisibility(View.VISIBLE);
-        	password.setVisibility(View.VISIBLE);
-        	logInButton.setVisibility(View.VISIBLE);
-        	createNewAccountButton.setVisibility(View.VISIBLE);
-        	
-        }else{
-        	
-        	userNameTextView.setVisibility(View.INVISIBLE);
-        	passwordTextView.setVisibility(View.INVISIBLE);
-        	userName.setVisibility(View.INVISIBLE);
-        	password.setVisibility(View.INVISIBLE);
-        	logInButton.setVisibility(View.INVISIBLE);
-        	createNewAccountButton.setVisibility(View.INVISIBLE);
-        	
-        	
-        }
+
+        
+        disableEnableViewElements();
         
         
         
@@ -127,9 +118,7 @@ public class MainActivity extends Activity {
 							Log.i("User isnt there", "nope");
 						}
 					}
-				});
-
-				
+				});	
 			}
         	
         });
@@ -153,6 +142,52 @@ public class MainActivity extends Activity {
         });
     }
 
+    
+    
+    
+    @Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        isConnected = activeNetwork != null && activeNetwork.isConnected();
+		
+		// **** checking to see if connection is there **** //
+		// **** and if not, disable elements in the view **** //
+		disableEnableViewElements();
+		
+		Log.i("in here", "Yes");
+	}
+
+
+
+
+	public void disableEnableViewElements(){
+    	
+    	if(isConnected == true){
+        	
+        	userNameTextView.setVisibility(View.VISIBLE);
+        	passwordTextView.setVisibility(View.VISIBLE);
+        	userName.setVisibility(View.VISIBLE);
+        	password.setVisibility(View.VISIBLE);
+        	logInButton.setVisibility(View.VISIBLE);
+        	createNewAccountButton.setVisibility(View.VISIBLE);
+        	
+        }else{
+        	
+        	userNameTextView.setVisibility(View.INVISIBLE);
+        	passwordTextView.setVisibility(View.INVISIBLE);
+        	userName.setVisibility(View.INVISIBLE);
+        	password.setVisibility(View.INVISIBLE);
+        	logInButton.setVisibility(View.INVISIBLE);
+        	createNewAccountButton.setVisibility(View.INVISIBLE);
+        	
+        	
+        }
+    	
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
