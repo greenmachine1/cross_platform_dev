@@ -26,26 +26,27 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f080006;
-        public static final int action_settings=0x7f080017;
-        public static final int add_band_info_button=0x7f080015;
+        public static final int action_settings=0x7f080018;
+        public static final int add_band_info_button=0x7f080016;
         public static final int band_name_add_or_edit=0x7f080001;
         public static final int band_name_text_xml=0x7f080003;
         public static final int band_size_add_or_edit=0x7f080000;
         public static final int band_size_text_xml=0x7f080004;
         public static final int button1=0x7f08000c;
         public static final int button2=0x7f08000d;
-        public static final int create_account_button_account_create=0x7f080013;
+        public static final int create_account_button_account_create=0x7f080014;
         public static final int done_button_add_or_edit=0x7f080002;
-        public static final int email_account_create_text=0x7f080011;
-        public static final int email_edit_text=0x7f080012;
-        public static final int fragment1=0x7f080016;
-        public static final int log_out_button_user_info=0x7f080014;
-        public static final int main_create_account_text=0x7f08000e;
+        public static final int email_account_create_text=0x7f080012;
+        public static final int email_edit_text=0x7f080013;
+        public static final int fragment1=0x7f080017;
+        public static final int log_out_button_user_info=0x7f080015;
+        public static final int main_create_account_text=0x7f08000f;
         public static final int main_listView=0x7f080005;
-        public static final int password_account_create_text=0x7f080010;
+        public static final int no_connection_text=0x7f08000e;
+        public static final int password_account_create_text=0x7f080011;
         public static final int password_edit_text=0x7f08000b;
         public static final int password_text=0x7f080009;
-        public static final int user_name_account_create_text=0x7f08000f;
+        public static final int user_name_account_create_text=0x7f080010;
         public static final int user_name_edit_text=0x7f08000a;
         public static final int user_name_text=0x7f080007;
         public static final int welcome_text=0x7f080008;

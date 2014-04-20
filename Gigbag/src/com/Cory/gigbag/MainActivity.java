@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
 	
 	TextView userNameTextView;
 	TextView passwordTextView;
+	TextView noConnectionTextView;
 	
 	Button logInButton;
 	Button createNewAccountButton;
@@ -63,6 +64,7 @@ public class MainActivity extends Activity {
         
         userNameTextView = (TextView)findViewById(R.id.user_name_text);
         passwordTextView = (TextView)findViewById(R.id.password_text);
+        noConnectionTextView = (TextView)findViewById(R.id.no_connection_text);
         
         logInButton = (Button)findViewById(R.id.button1);
         createNewAccountButton = (Button)findViewById(R.id.button2);
@@ -163,13 +165,15 @@ public class MainActivity extends Activity {
         	password.setVisibility(View.VISIBLE);
         	logInButton.setVisibility(View.VISIBLE);
         	createNewAccountButton.setVisibility(View.VISIBLE);
+        	noConnectionTextView.setVisibility(View.INVISIBLE);
         }else{
         	userNameTextView.setVisibility(View.INVISIBLE);
         	passwordTextView.setVisibility(View.INVISIBLE);
         	userName.setVisibility(View.INVISIBLE);
         	password.setVisibility(View.INVISIBLE);
         	logInButton.setVisibility(View.INVISIBLE);
-        	createNewAccountButton.setVisibility(View.INVISIBLE);	
+        	createNewAccountButton.setVisibility(View.INVISIBLE);
+        	noConnectionTextView.setVisibility(View.VISIBLE);
         }
     }
 

@@ -77,4 +77,14 @@
         android:layout_marginBottom="21dp"
         android:text="Create a New Account" />
 
+    <TextView
+        android:id="@+id/no_connection_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/welcome_text"
+        android:layout_alignRight="@+id/user_name_edit_text"
+        android:layout_below="@+id/user_name_edit_text"
+        android:gravity="center"
+        android:text="Please connect to Either WiFi or Cellular Network to Log in or Create a New Account" />
+
 </RelativeLayout>

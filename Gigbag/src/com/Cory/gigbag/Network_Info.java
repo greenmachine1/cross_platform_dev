@@ -21,7 +21,7 @@ public class Network_Info {
 	private Network_Info(){
 	}
 	
-	// **** basically asking if one instance off **** //
+	// **** basically asking if one instance of **** //
 	// **** this class exsists and if it does **** //
 	// **** do not create a new one **** //
 	public static Network_Info getInstance(){
