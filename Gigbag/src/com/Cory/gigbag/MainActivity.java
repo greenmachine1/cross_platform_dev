@@ -37,6 +37,8 @@ public class MainActivity extends Activity {
 	
 	Context context;
 	
+	Network_Info networkInfo;
+	
 	ConnectivityManager cm;
 	NetworkInfo activeNetwork;
 	boolean isConnected;
@@ -49,9 +51,17 @@ public class MainActivity extends Activity {
         context = this;
 
         // **** gathering connection status **** //
+        /*
         cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         isConnected = activeNetwork != null && activeNetwork.isConnected();
+        */
+        
+        networkInfo = Network_Info.getInstance();
+        networkInfo.detectNetworkStatus(getApplicationContext());
+        
+        isConnected = networkInfo.returnStatus();
+        
         
         // **** pinpointing the username and passwords **** //
         userName = (EditText)findViewById(R.id.user_name_edit_text);
@@ -68,11 +78,15 @@ public class MainActivity extends Activity {
         BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-            	
+            	/*
             	activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
                 isConnected = activeNetwork != null && activeNetwork.isConnected();
-                
+                */
+            	
+            	networkInfo.detectNetworkStatus(getApplicationContext());
+            	isConnected = networkInfo.returnStatus();
+            	
                 Log.i("connection status", "" + isConnected);
                 
                 disableEnableViewElements();

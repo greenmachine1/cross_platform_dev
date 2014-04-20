@@ -7,6 +7,7 @@ import com.parse.Parse;
 // **** creating a singleton class to handle app wide **** //
 // **** info including parse initialization info **** //
 public class Application_class extends Application{
+	
 	private static Application_class singleton;
 	
 	public Application_class getInstance(){
