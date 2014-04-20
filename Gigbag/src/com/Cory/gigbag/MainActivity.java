@@ -51,12 +51,6 @@ public class MainActivity extends Activity {
         context = this;
 
         // **** gathering connection status **** //
-        /*
-        cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        isConnected = activeNetwork != null && activeNetwork.isConnected();
-        */
-        
         networkInfo = Network_Info.getInstance();
         networkInfo.detectNetworkStatus(getApplicationContext());
         
@@ -74,15 +68,10 @@ public class MainActivity extends Activity {
         createNewAccountButton = (Button)findViewById(R.id.button2);
         
 
-        
+        // **** broadcast reciever for my connection change **** //
         BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-            	/*
-            	activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-                isConnected = activeNetwork != null && activeNetwork.isConnected();
-                */
             	
             	networkInfo.detectNetworkStatus(getApplicationContext());
             	isConnected = networkInfo.returnStatus();
@@ -139,7 +128,6 @@ public class MainActivity extends Activity {
 							
 							// **** starting the user info activity **** //
 							Intent userInfoIntent = new Intent(context, User_Info.class);
-						
 							startActivity(userInfoIntent);
 							
 						// **** if not! **** //	

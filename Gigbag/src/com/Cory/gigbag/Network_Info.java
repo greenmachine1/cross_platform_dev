@@ -3,6 +3,7 @@ package com.Cory.gigbag;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 // **** creation of a singleton class **** //
 public class Network_Info {
@@ -10,8 +11,11 @@ public class Network_Info {
 	private static Network_Info info = null;
 	
 	ConnectivityManager cm;
-	NetworkInfo activeNetwork;
+	NetworkInfo activeNetworkWiFi;
+	NetworkInfo activeNetworkMobile;
 	boolean isConnected;
+	
+	Context _context;
 	
 	// **** private constructor **** //
 	private Network_Info(){
@@ -29,11 +33,15 @@ public class Network_Info {
 	
 	public void detectNetworkStatus(Context context){
 		
+		_context = context;
+		
 		// **** gathering connection status **** //
-        cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        isConnected = activeNetwork != null && activeNetwork.isConnected();
+        cm = (ConnectivityManager)_context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        activeNetworkWiFi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        activeNetworkMobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        isConnected = activeNetworkWiFi != null && (activeNetworkWiFi.isConnected() || (activeNetworkMobile.isConnected()));
 	}
+	
 	
 	// **** returns the status **** //
 	public boolean returnStatus(){
