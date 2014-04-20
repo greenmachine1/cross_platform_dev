@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -51,9 +52,7 @@ public class MainActivity extends Activity {
 
         // **** gathering connection status **** //
         cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        //activeNetwork = cm.getActiveNetworkInfo();
-        activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
+        activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         isConnected = activeNetwork != null && activeNetwork.isConnected();
         
         // **** pinpointing the username and passwords **** //
@@ -68,9 +67,27 @@ public class MainActivity extends Activity {
         
 
         
+        BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+            	
+            	activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+                isConnected = activeNetwork != null && activeNetwork.isConnected();
+                
+                Log.i("connection status", "" + isConnected);
+                
+                disableEnableViewElements();
+            }
+        };
+
+        // **** the intent filter for the receiver **** //
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);        
+        registerReceiver(networkStateReceiver, filter);
+        
+        // **** disables or enables elements based on **** //
+        // **** connectivity **** //
         disableEnableViewElements();
-        
-        
         
         // **** checking to see if there is a user still **** //
         // **** logged in **** //
@@ -93,7 +110,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				
 				// **** getting the user info **** //
 				String userNameString = userName.getText().toString();
 				String passwordString = password.getText().toString();
@@ -114,8 +130,7 @@ public class MainActivity extends Activity {
 							
 						// **** if not! **** //	
 						}else{
-							
-							Log.i("User isnt there", "nope");
+							Toast.makeText(context, "User not Found", Toast.LENGTH_LONG).show();
 						}
 					}
 				});	
@@ -141,27 +156,6 @@ public class MainActivity extends Activity {
 			}
         });
     }
-
-    
-    
-    
-    @Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		
-		activeNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-        isConnected = activeNetwork != null && activeNetwork.isConnected();
-		
-		// **** checking to see if connection is there **** //
-		// **** and if not, disable elements in the view **** //
-		disableEnableViewElements();
-		
-		Log.i("in here", "Yes");
-	}
-
-
 
 
 	public void disableEnableViewElements(){

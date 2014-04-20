@@ -181,8 +181,6 @@ public class User_info_List_Fragment extends Fragment{
 					
 					}
 					
-					
-					
 					// **** after loading everything into the hashmaps **** //
 					// **** notify the adapter **** //
 					adapter.notifyDataSetChanged();
@@ -216,7 +214,4 @@ public class User_info_List_Fragment extends Fragment{
 		// **** loading the data again upon Resuming **** //
 		loadData();
 	}
-	
-	
-	
 }
