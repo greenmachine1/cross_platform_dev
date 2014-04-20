@@ -38,9 +38,7 @@ public class MainActivity extends Activity {
 	Context context;
 	
 	ConnectivityManager cm;
-	
 	NetworkInfo activeNetwork;
-	
 	boolean isConnected;
 
     @Override
@@ -80,10 +78,13 @@ public class MainActivity extends Activity {
                 disableEnableViewElements();
             }
         };
-
+        
         // **** the intent filter for the receiver **** //
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);        
         registerReceiver(networkStateReceiver, filter);
+
+        
+        
         
         // **** disables or enables elements based on **** //
         // **** connectivity **** //
@@ -109,7 +110,6 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				
 				// **** getting the user info **** //
 				String userNameString = userName.getText().toString();
 				String passwordString = password.getText().toString();
@@ -139,20 +139,14 @@ public class MainActivity extends Activity {
         });
         
         // **** the createAccountButtons onclick listener **** //
-        
         createNewAccountButton.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-				Log.i("create new account clicked", "Yes");
-				
 				// **** launching the new account activity **** //
 				Intent new_account_intent = new Intent(context, New_Account.class);
 				
 				startActivity(new_account_intent);
-				
 			}
         });
     }
@@ -161,26 +155,20 @@ public class MainActivity extends Activity {
 	public void disableEnableViewElements(){
     	
     	if(isConnected == true){
-        	
         	userNameTextView.setVisibility(View.VISIBLE);
         	passwordTextView.setVisibility(View.VISIBLE);
         	userName.setVisibility(View.VISIBLE);
         	password.setVisibility(View.VISIBLE);
         	logInButton.setVisibility(View.VISIBLE);
         	createNewAccountButton.setVisibility(View.VISIBLE);
-        	
         }else{
-        	
         	userNameTextView.setVisibility(View.INVISIBLE);
         	passwordTextView.setVisibility(View.INVISIBLE);
         	userName.setVisibility(View.INVISIBLE);
         	password.setVisibility(View.INVISIBLE);
         	logInButton.setVisibility(View.INVISIBLE);
-        	createNewAccountButton.setVisibility(View.INVISIBLE);
-        	
-        	
+        	createNewAccountButton.setVisibility(View.INVISIBLE);	
         }
-    	
     }
 
     @Override
