@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -43,12 +47,21 @@ public class User_info_List_Fragment extends Fragment{
 	// **** getting the current user **** //
 	ParseUser user = ParseUser.getCurrentUser();
 	
+	Network_Info networkInfo;
+	
+	boolean isConnected;
+	
 	
 	// **** declaring the adapter array list **** //
 	public ArrayList<Main_list_definition> bandNameAndSizeList = new ArrayList<Main_list_definition>();
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		// **** getting the network singleton **** // 
+		networkInfo = Network_Info.getInstance();
+		
+		
 		
 		bandName = new HashMap<String, String>();
 		bandSize = new HashMap<String, String>();
@@ -64,8 +77,48 @@ public class User_info_List_Fragment extends Fragment{
 		// **** final bridging of the adapter **** //
 		adapter = new Main_list_adapter(getActivity(), R.layout.item_for_list, bandNameAndSizeList);
 
-		// **** loading the data **** //
-		loadData();
+		
+		
+		// **** broadcast reciever for my connection change **** //
+        BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+            	
+            	networkInfo.detectNetworkStatus(getActivity());
+            	isConnected = networkInfo.returnStatus();
+            	
+                Log.i("connection status", "" + isConnected);
+                
+                if(isConnected == false){
+                	loadData();
+                }
+            }
+        };
+        
+        // **** the intent filter for the receiver **** //
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);  
+        getActivity().registerReceiver(networkStateReceiver, filter);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// **** checking network status **** //
+		if(networkInfo.returnStatus() == true){
+		
+			// **** loading the data **** //
+			loadData();
+			
+		}else{
+			
+			// **** no connection toast **** //
+			Toast.makeText(getActivity(), "No Connection", Toast.LENGTH_LONG).show();
+			
+		}
 
 		// **** setting the mainlist to hold the adapter **** //
 		mainListView.setAdapter(adapter);
