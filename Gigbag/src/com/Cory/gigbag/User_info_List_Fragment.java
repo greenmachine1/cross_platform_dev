@@ -89,7 +89,7 @@ public class User_info_List_Fragment extends Fragment{
             	
                 Log.i("connection status", "" + isConnected);
                 
-                if(isConnected == false){
+                if(isConnected == true){
                 	loadData();
                 }
             }
@@ -139,54 +139,73 @@ public class User_info_List_Fragment extends Fragment{
 				
 				// **** setting up the edit and delete functionality **** //
 				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				if(isConnected == true){
 				
-				// **** Cancel, delete, and edit buttons
-				builder.setMessage("Edit or Delete band " + listOfNames.get(item)).
-						setTitle("Edit or Delete").
-						setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+					// **** Cancel, delete, and edit buttons
+					builder.setMessage("Edit or Delete band " + listOfNames.get(item)).
+							setTitle("Edit or Delete").
+							setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									// TODO Auto-generated method stub
+									Log.i("Ok clicked", "Yes");
+									dialog.cancel();
+								}
+							}).setNeutralButton("Delete", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									// TODO Auto-generated method stub
+									Log.i("Ok clicked", "Yes");
+									
+									objects.get(itemInt).deleteInBackground();
+									
+									loadData();
+									
+									dialog.cancel();
+								}
+							}).setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									// TODO Auto-generated method stub
+									Log.i("Ok clicked", "yes");
+									dialog.cancel();
+									
+									// **** starting the Add_band_info class to pass **** //
+									// **** in info to be edited **** //
+									Intent editIntent = new Intent(getActivity(), Add_band_info.class);
+									
+									// **** passing in the name of the band **** //
+									editIntent.putExtra("nameOfBand", nameString);
+									editIntent.putExtra("bandSize", bandSize.get(listOfNames.get(itemInt)).toString());
+									editIntent.putExtra("idString", objects.get(itemInt).getObjectId());
+									editIntent.putExtra("cameFromEdit", "Yes");
+									
+									startActivity(editIntent);
+								}
+							}).show();
+					
+				// **** if there is no connection **** //	
+				}else if(isConnected == false){
+					
+					builder.setMessage("Please connect to WiFi or cellular connectivity to Edit or Delete").
+					setTitle("No Connection").
+					setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
 							
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								// TODO Auto-generated method stub
-								Log.i("Ok clicked", "Yes");
-								dialog.cancel();
-							}
-						}).setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-							
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								// TODO Auto-generated method stub
-								Log.i("Ok clicked", "Yes");
-								
-								objects.get(itemInt).deleteInBackground();
-								
-								loadData();
-								
-								dialog.cancel();
-							}
-						}).setNegativeButton("Edit", new DialogInterface.OnClickListener() {
-							
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								// TODO Auto-generated method stub
-								Log.i("Ok clicked", "yes");
-								dialog.cancel();
-								
-								// **** starting the Add_band_info class to pass **** //
-								// **** in info to be edited **** //
-								Intent editIntent = new Intent(getActivity(), Add_band_info.class);
-								
-								// **** passing in the name of the band **** //
-								editIntent.putExtra("nameOfBand", nameString);
-								editIntent.putExtra("bandSize", bandSize.get(listOfNames.get(itemInt)).toString());
-								editIntent.putExtra("idString", objects.get(itemInt).getObjectId());
-								editIntent.putExtra("cameFromEdit", "Yes");
-								
-								startActivity(editIntent);
-							}
-						}).show();
+							// **** dismiss the dialog **** //
+							dialog.cancel();
+						}
+					}).show();
+				}
 			}
 		});
+		
+		// **** return the view **** //
 		return view;
 	}
 
