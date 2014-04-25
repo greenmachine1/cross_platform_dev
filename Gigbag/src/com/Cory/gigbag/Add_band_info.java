@@ -23,6 +23,8 @@ public class Add_band_info extends Activity{
 	
 	ParseUser user;
 	
+	Network_Info networkInfo;
+	
 	
 
 	@Override

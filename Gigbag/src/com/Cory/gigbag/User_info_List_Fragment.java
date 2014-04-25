@@ -47,8 +47,9 @@ public class User_info_List_Fragment extends Fragment{
 	// **** getting the current user **** //
 	ParseUser user = ParseUser.getCurrentUser();
 	
+	BroadcastReceiver networkStateReceiver;
 	Network_Info networkInfo;
-	
+	IntentFilter filter;
 	boolean isConnected;
 	
 	
@@ -60,8 +61,6 @@ public class User_info_List_Fragment extends Fragment{
 		
 		// **** getting the network singleton **** // 
 		networkInfo = Network_Info.getInstance();
-		
-		
 		
 		bandName = new HashMap<String, String>();
 		bandSize = new HashMap<String, String>();
@@ -76,11 +75,11 @@ public class User_info_List_Fragment extends Fragment{
 		
 		// **** final bridging of the adapter **** //
 		adapter = new Main_list_adapter(getActivity(), R.layout.item_for_list, bandNameAndSizeList);
+		
+		
 
-		
-		
 		// **** broadcast reciever for my connection change **** //
-        BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
+        networkStateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
             	
@@ -96,17 +95,11 @@ public class User_info_List_Fragment extends Fragment{
         };
         
         // **** the intent filter for the receiver **** //
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);  
+        filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);  
         getActivity().registerReceiver(networkStateReceiver, filter);
 		
-		
-		
-		
-		
-		
-		
-		
-		
+	
+        
 		// **** checking network status **** //
 		if(networkInfo.returnStatus() == true){
 		
@@ -258,7 +251,6 @@ public class User_info_List_Fragment extends Fragment{
 					adapter.notifyDataSetChanged();
 					
 				}else{
-					
 					Log.i("error", e.getMessage().toString());
 				}
 
@@ -278,12 +270,34 @@ public class User_info_List_Fragment extends Fragment{
 	
 	
 	
+	
+	
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		
+		Log.i("got called", "called");
+		
+		// **** unregister the reciever **** //
+		getActivity().unregisterReceiver(networkStateReceiver);
+		
+	}
+
+
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		if(isConnected == true){
+			
+			// **** loading the data again upon Resuming **** //
+			loadData();
+		}
 		
-		// **** loading the data again upon Resuming **** //
-		loadData();
+		Log.i("onresume", "called");
+		// **** registering the reciever **** //
+		getActivity().registerReceiver(networkStateReceiver, filter);
 	}
 }
