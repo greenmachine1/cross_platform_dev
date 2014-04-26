@@ -25,8 +25,6 @@ public class Add_band_info extends Activity{
 	
 	Network_Info networkInfo;
 	
-	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -79,7 +77,9 @@ public class Add_band_info extends Activity{
 								object.put("bandName", nameEditText.getText().toString());
 								object.put("bandSize", size);
 								object.put("user", user);
-								object.saveInBackground();
+								
+								// **** saves the object **** //
+								object.saveEventually();
 							}
 						}
 					});
@@ -93,12 +93,11 @@ public class Add_band_info extends Activity{
 					newParseObject.put("bandSize", size);
 					newParseObject.put("user", user);
 				
-					newParseObject.saveInBackground();
+					newParseObject.saveEventually();
 					
 				}
 				finish();
 			}
-			
 		});
 	}
 

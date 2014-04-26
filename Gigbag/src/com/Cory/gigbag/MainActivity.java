@@ -43,6 +43,9 @@ public class MainActivity extends Activity {
 	ConnectivityManager cm;
 	NetworkInfo activeNetwork;
 	boolean isConnected;
+	
+	IntentFilter filter;
+	BroadcastReceiver networkStateReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,7 @@ public class MainActivity extends Activity {
         
 
         // **** broadcast reciever for my connection change **** //
-        BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
+        networkStateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
             	
@@ -85,7 +88,7 @@ public class MainActivity extends Activity {
         };
         
         // **** the intent filter for the receiver **** //
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);        
+        filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);        
         registerReceiver(networkStateReceiver, filter);
 
         
@@ -184,6 +187,25 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		
+		// **** unregister the reciever **** //
+		unregisterReceiver(networkStateReceiver);
+	}
+
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		// **** registering the reciever **** //
+		registerReceiver(networkStateReceiver, filter);
+	}
 
     
     

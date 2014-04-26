@@ -62,6 +62,7 @@ public class User_info_List_Fragment extends Fragment{
 		// **** getting the network singleton **** // 
 		networkInfo = Network_Info.getInstance();
 		
+		// **** setting up the hashmaps **** //
 		bandName = new HashMap<String, String>();
 		bandSize = new HashMap<String, String>();
 		listOfNames = new ArrayList<String>();
@@ -284,5 +285,4 @@ public class User_info_List_Fragment extends Fragment{
 		// **** registering the reciever **** //
 		getActivity().registerReceiver(networkStateReceiver, filter);
 	}
-	
 }
