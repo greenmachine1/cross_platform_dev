@@ -76,17 +76,24 @@ public class User_info_List_Fragment extends Fragment{
 		// **** final bridging of the adapter **** //
 		adapter = new Main_list_adapter(getActivity(), R.layout.item_for_list, bandNameAndSizeList);
 		
+		// **** checking network status **** //
+		if(networkInfo.returnStatus() == true){
+			// **** loading the data **** //
+			loadData();
+		}else{
+			// **** no connection toast **** //
+			Toast.makeText(getActivity(), "No Connection", Toast.LENGTH_LONG).show();
+		}
+		
+		
 		
 
 		// **** broadcast reciever for my connection change **** //
         networkStateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-            	
             	networkInfo.detectNetworkStatus(getActivity());
             	isConnected = networkInfo.returnStatus();
-            	
-                Log.i("connection status", "" + isConnected);
                 
                 if(isConnected == true){
                 	loadData();
@@ -100,19 +107,9 @@ public class User_info_List_Fragment extends Fragment{
 		
 	
         
-		// **** checking network status **** //
-		if(networkInfo.returnStatus() == true){
 		
-			// **** loading the data **** //
-			loadData();
-			
-		}else{
-			
-			// **** no connection toast **** //
-			Toast.makeText(getActivity(), "No Connection", Toast.LENGTH_LONG).show();
-			
-		}
 
+		
 		// **** setting the mainlist to hold the adapter **** //
 		mainListView.setAdapter(adapter);
 		
@@ -141,29 +138,20 @@ public class User_info_List_Fragment extends Fragment{
 								
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
-									// TODO Auto-generated method stub
-									Log.i("Ok clicked", "Yes");
 									dialog.cancel();
 								}
 							}).setNeutralButton("Delete", new DialogInterface.OnClickListener() {
 								
 								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									// TODO Auto-generated method stub
-									Log.i("Ok clicked", "Yes");
-									
+								public void onClick(DialogInterface dialog, int which) {									
 									objects.get(itemInt).deleteInBackground();
-									
 									loadData();
-									
 									dialog.cancel();
 								}
 							}).setNegativeButton("Edit", new DialogInterface.OnClickListener() {
 								
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
-									// TODO Auto-generated method stub
-									Log.i("Ok clicked", "yes");
 									dialog.cancel();
 									
 									// **** starting the Add_band_info class to pass **** //
@@ -207,6 +195,8 @@ public class User_info_List_Fragment extends Fragment{
 	// **** loading up the data **** //
 	public void loadData(){
 
+		Toast.makeText(getActivity(), "Loading", Toast.LENGTH_SHORT).show();
+		
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
         query.whereEqualTo("user", user);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -216,13 +206,8 @@ public class User_info_List_Fragment extends Fragment{
 				// TODO Auto-generated method stub
 				if(e == null){
 					
-					// **** clear out all the arrays and hashmaps **** //
-					bandName.clear();
-					bandSize.clear();
-					listOfNames.clear();
-					bandNameAndSizeList.clear();
-					
-					objects.clear();
+					// **** clears out the hashmaps **** //
+					clearOutHashMaps();
 					
 					int amountOfObjects = listOfObjects.size();
 					
@@ -241,7 +226,6 @@ public class User_info_List_Fragment extends Fragment{
 						
 						// **** adding names to the listOfNames array **** //
 						listOfNames.add(bandNameString);
-						
 						objects.add(listOfObjects.get(i));
 					
 					}
@@ -256,8 +240,7 @@ public class User_info_List_Fragment extends Fragment{
 
 				// **** able to add bands to the adapter and be displayed
 				for(int i = 0; i < listOfNames.size(); i++){
-					
-					//Main_list_definition item = new Main_list_definition(bandName.get(i - 1).toString(), bandSize.get(i - 1).toString());
+
 					Main_list_definition item = new Main_list_definition("Band Name: " + bandName.get(listOfNames.get(i)).toString(),
 																		 "Number of Members: " + bandSize.get(listOfNames.get(i)).toString());
 					bandNameAndSizeList.add(item);
@@ -269,6 +252,17 @@ public class User_info_List_Fragment extends Fragment{
 	
 	
 	
+	public void clearOutHashMaps(){
+		
+		// **** clear out all the arrays and hashmaps **** //
+		bandName.clear();
+		bandSize.clear();
+		listOfNames.clear();
+		bandNameAndSizeList.clear();
+		objects.clear();
+		adapter.notifyDataSetChanged();
+	}
+	
 	
 	
 	
@@ -277,27 +271,18 @@ public class User_info_List_Fragment extends Fragment{
 		// TODO Auto-generated method stub
 		super.onStop();
 		
-		Log.i("got called", "called");
-		
 		// **** unregister the reciever **** //
 		getActivity().unregisterReceiver(networkStateReceiver);
-		
 	}
-
 
 
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		if(isConnected == true){
-			
-			// **** loading the data again upon Resuming **** //
-			loadData();
-		}
 		
-		Log.i("onresume", "called");
 		// **** registering the reciever **** //
 		getActivity().registerReceiver(networkStateReceiver, filter);
 	}
+	
 }
