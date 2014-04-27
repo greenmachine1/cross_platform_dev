@@ -94,6 +94,7 @@ public class User_info_List_Fragment extends Fragment{
             @Override
             public void onReceive(Context context, Intent intent) {
             	networkInfo.detectNetworkStatus(getActivity());
+            	
             	isConnected = networkInfo.returnStatus();
                 
                 if(isConnected == true){
@@ -196,7 +197,7 @@ public class User_info_List_Fragment extends Fragment{
 	// **** loading up the data **** //
 	public void loadData(){
 
-		//Toast.makeText(getActivity(), "Loading", Toast.LENGTH_SHORT).show();
+		
 		
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
         query.whereEqualTo("user", user);
@@ -282,6 +283,14 @@ public class User_info_List_Fragment extends Fragment{
 		// TODO Auto-generated method stub
 		super.onResume();
 		
+		networkInfo.detectNetworkStatus(getActivity());
+    	
+    	isConnected = networkInfo.returnStatus();
+    	
+		if(isConnected == true){
+			
+			loadData();
+		}
 		// **** registering the reciever **** //
 		getActivity().registerReceiver(networkStateReceiver, filter);
 	}
