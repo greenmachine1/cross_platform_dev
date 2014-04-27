@@ -166,6 +166,7 @@ public class MainActivity extends Activity {
         	passwordTextView.setVisibility(View.VISIBLE);
         	userName.setVisibility(View.VISIBLE);
         	password.setVisibility(View.VISIBLE);
+        	
         	logInButton.setVisibility(View.VISIBLE);
         	createNewAccountButton.setVisibility(View.VISIBLE);
         	noConnectionTextView.setVisibility(View.INVISIBLE);
@@ -174,6 +175,7 @@ public class MainActivity extends Activity {
         	passwordTextView.setVisibility(View.INVISIBLE);
         	userName.setVisibility(View.INVISIBLE);
         	password.setVisibility(View.INVISIBLE);
+        	
         	logInButton.setVisibility(View.INVISIBLE);
         	createNewAccountButton.setVisibility(View.INVISIBLE);
         	noConnectionTextView.setVisibility(View.VISIBLE);

@@ -1,6 +1,8 @@
 package com.Cory.gigbag;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +26,7 @@ public class Add_band_info extends Activity{
 	ParseUser user;
 	
 	Network_Info networkInfo;
+	boolean isConnected;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,28 @@ public class Add_band_info extends Activity{
 		sizeEditText = (EditText)findViewById(R.id.band_size_add_or_edit);
 		
 		cameFromEdit = extras.getString("cameFromEdit");
+		
+		// **** get network status **** //
+		networkInfo = Network_Info.getInstance();
+		networkInfo.detectNetworkStatus(this);
+		
+		isConnected = networkInfo.returnStatus();
+		
+		// **** displaying a disclamer notifying the user **** //
+		// **** that they are not connected to the server **** //
+		if(isConnected == false){
+			
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("You arent connected to the server, however, you can still create an entry and it will be delivered once connection is reestablished").
+			setTitle("No Connection").
+			setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			}).show();
+		}
 		
 		// **** if this activity was started by a call to edit **** //
 		// **** I want the name and size fields to be filled **** //

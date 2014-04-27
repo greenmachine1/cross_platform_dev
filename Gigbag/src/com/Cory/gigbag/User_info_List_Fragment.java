@@ -196,7 +196,7 @@ public class User_info_List_Fragment extends Fragment{
 	// **** loading up the data **** //
 	public void loadData(){
 
-		Toast.makeText(getActivity(), "Loading", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getActivity(), "Loading", Toast.LENGTH_SHORT).show();
 		
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
         query.whereEqualTo("user", user);
