@@ -1,8 +1,10 @@
 package com.Cory.gigbag;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -13,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -93,41 +96,48 @@ public class New_Account extends Activity{
 				// **** if there is a connection **** //
 				if(isConnected == true){
 					
-					// **** gathering all the text fields **** //
-					user.setUsername(userName.getText().toString());
-					user.setEmail(email.getText().toString());
-					user.setPassword(passWord.getText().toString());
-					user.signUpInBackground(new SignUpCallback() {
+					String tempUserName = userName.getText().toString();
+					String tempUserEmail = email.getText().toString();
+					String tempPassWord = passWord.getText().toString();
+					
+					// **** checking to make sure the username, password and email are not **** //
+					// **** empty **** //
+					if((!(tempUserName.isEmpty())) && (!(tempPassWord.isEmpty())) && (!(tempUserEmail.isEmpty()))){ 
+					
+						// **** gathering all the text fields and putting it into **** //
+						// **** the user object **** //
+						user.setUsername(tempUserName);
+						user.setEmail(tempUserEmail);
+						user.setPassword(tempPassWord);
+					
+						user.signUpInBackground(new SignUpCallback() {
 						
-						@Override
-						public void done(ParseException e) {
+							@Override
+							public void done(ParseException e) {
 							
-							// **** sign up successful **** //
-							if(e == null){
+								// **** sign up successful **** //
+								if(e == null){
 							
-								Intent userInfoIntent = new Intent(getApplication(), User_Info.class);
-								startActivity(userInfoIntent);
+									// **** start of the user info activity **** //
+									Intent userInfoIntent = new Intent(getApplication(), User_Info.class);
+									startActivity(userInfoIntent);
 								
-							// **** sign up not successful **** //	
-							}else{
-								
-								Log.i("account creation", "not successful");
-								
+									// **** sign up not successful **** //	
+								}else{
+									Toast.makeText(getApplicationContext(), "Sign up not successful", Toast.LENGTH_SHORT).show();
+								}
+							
 							}
-							
-						}
-					});
-					
-				// **** if there is no connection **** //	
-				}else{
-					
+						});
+					// **** if any of the fields are empty, let the user know **** //	
+					}else{
+						Toast.makeText(getApplicationContext(), "User input not Valid", Toast.LENGTH_SHORT).show();
+						
+					}
 					
 				}
-				
 			}
-        	
         });
-        
 	}
 	
 	

@@ -122,25 +122,28 @@ public class MainActivity extends Activity {
 				String userNameString = userName.getText().toString();
 				String passwordString = password.getText().toString();
 				
-				// **** sending it to the parse server **** //
-				ParseUser.logInInBackground(userNameString, passwordString, new LogInCallback() {
+				if((!(userNameString.isEmpty())) && (!(passwordString.isEmpty()))){
+				
+					// **** sending it to the parse server **** //
+					ParseUser.logInInBackground(userNameString, passwordString, new LogInCallback() {
 					
-					@Override
-					public void done(ParseUser user, ParseException e) {
+						@Override
+						public void done(ParseUser user, ParseException e) {
 						
-						// **** if the user exsists! **** //
-						if(user != null){
+							// **** if the user exsists! **** //
+							if(user != null){
 							
-							// **** starting the user info activity **** //
-							Intent userInfoIntent = new Intent(context, User_Info.class);
-							startActivity(userInfoIntent);
+								// **** starting the user info activity **** //
+								Intent userInfoIntent = new Intent(context, User_Info.class);
+								startActivity(userInfoIntent);
 							
-						// **** if not! **** //	
-						}else{
-							Toast.makeText(context, "User not Found", Toast.LENGTH_LONG).show();
+								// **** if not! **** //	
+							}else{
+								Toast.makeText(context, "User not Found", Toast.LENGTH_LONG).show();
+							}
 						}
-					}
-				});	
+					});	
+				}
 			}
         	
         });
