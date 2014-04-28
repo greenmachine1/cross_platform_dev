@@ -120,30 +120,31 @@
     UIButton *button = (UIButton *)sender;
     if(button.tag == 0){
         
-        if(!([userName.text isEqualToString:@""] || ([passWord.text isEqualToString:@""]))){
+        if(reachability.isReachable == 1){
+            if(!([userName.text isEqualToString:@""] || ([passWord.text isEqualToString:@""]))){
         
-            // **** verifying the email address has the "@" and "." **** //
-            // **** somewhere in the string **** //
-            NSString *emailString = [[NSString alloc] initWithString:email.text];
+                // **** verifying the email address has the "@" and "." **** //
+                // **** somewhere in the string **** //
+                NSString *emailString = [[NSString alloc] initWithString:email.text];
         
-            // **** checking the string to make sure its valid **** //
-            if((([emailString rangeOfString:@"@"].location == NSNotFound) || ([emailString rangeOfString:@"."].location == NSNotFound))){
+                // **** checking the string to make sure its valid **** //
+                if((([emailString rangeOfString:@"@"].location == NSNotFound) || ([emailString rangeOfString:@"."].location == NSNotFound))){
             
-                UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Email Address Not Valid" message:@"Please enter in a valid Email Address" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    UIAlertView *newAlert = [[UIAlertView alloc] initWithTitle:@"Email Address Not Valid" message:@"Please enter in a valid Email Address" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             
-                [newAlert show];
+                    [newAlert show];
         
-            }else{
+                }else{
         
-                // **** setting up the user account info **** //
-                PFUser *user = [PFUser user];
-                user.username = userName.text;
-                user.password = passWord.text;
-                user.email = email.text;
+                    // **** setting up the user account info **** //
+                    PFUser *user = [PFUser user];
+                    user.username = userName.text;
+                    user.password = passWord.text;
+                    user.email = email.text;
         
         
-                // **** the sign up portion **** //
-                [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    // **** the sign up portion **** //
+                    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             
                     // **** successful creation of user **** //
                     if(!error){
@@ -165,7 +166,7 @@
             
                 }];
             }
-            
+        }
         // **** user name and pass word fields are blank **** //
         }else{
             
