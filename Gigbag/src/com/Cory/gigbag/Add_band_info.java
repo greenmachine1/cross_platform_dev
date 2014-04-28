@@ -3,6 +3,7 @@ package com.Cory.gigbag;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,6 +42,9 @@ public class Add_band_info extends Activity{
 		// **** targetting the input fields **** //
 		nameEditText = (EditText)findViewById(R.id.band_name_add_or_edit);
 		sizeEditText = (EditText)findViewById(R.id.band_size_add_or_edit);
+		
+		// **** changed the keypad to be a 12 key keypad **** //
+		sizeEditText.setRawInputType(Configuration.KEYBOARD_12KEY);
 		
 		cameFromEdit = extras.getString("cameFromEdit");
 		
