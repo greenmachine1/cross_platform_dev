@@ -86,9 +86,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [nameOfBandText resignFirstResponder];
-    
-    
-    
+
     return TRUE;
 }
 
