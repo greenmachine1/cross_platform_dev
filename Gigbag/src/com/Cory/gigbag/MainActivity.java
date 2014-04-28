@@ -143,6 +143,9 @@ public class MainActivity extends Activity {
 							}
 						}
 					});	
+				}else{
+					// **** if any of the fields are empty, let the user know **** //
+					Toast.makeText(getApplicationContext(), "User input not Valid", Toast.LENGTH_SHORT).show();
 				}
 			}
         	

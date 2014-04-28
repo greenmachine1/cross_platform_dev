@@ -279,15 +279,21 @@
     // **** edit **** //
     }else if (buttonIndex == 1){
         
-        PFQuery *queryObject = [PFQuery queryWithClassName:@"Post"];
-        PFObject *objectToBeDeleted = [queryObject getObjectWithId:[idsOfBands objectAtIndex:selectedIndex]];
+        if(reachability.isReachable == 1){
+            PFQuery *queryObject = [PFQuery queryWithClassName:@"Post"];
+            PFObject *objectToBeDeleted = [queryObject getObjectWithId:[idsOfBands objectAtIndex:selectedIndex]];
         
-        AddBandInfo *editBandInfo = [[AddBandInfo alloc] initWithNibName:@"AddBandInfo" bundle:nil];
+            AddBandInfo *editBandInfo = [[AddBandInfo alloc] initWithNibName:@"AddBandInfo" bundle:nil];
     
-        [self presentViewController:editBandInfo animated:true completion:nil];
+            [self presentViewController:editBandInfo animated:true completion:nil];
         
-        [editBandInfo passInObject:objectToBeDeleted didComeFromEdit:TRUE];
-
+            [editBandInfo passInObject:objectToBeDeleted didComeFromEdit:TRUE];
+        }else{
+            
+            UIAlertView *newAlertView = [[UIAlertView alloc] initWithTitle:@"No Connection" message:@"To Edit this object, please connect to either WiFi or Cellular Data" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            
+            [newAlertView show];
+        }
         
         
     // **** delete **** //
