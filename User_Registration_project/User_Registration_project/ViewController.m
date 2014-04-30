@@ -64,6 +64,15 @@
     // **** setting user defaults **** //
     defaults = [NSUserDefaults standardUserDefaults];
     
+    
+    // **** this is a cloud function **** //
+    [PFCloud callFunctionInBackground:@"hello" withParameters:@{} block:^(NSString *result, NSError *error) {
+        
+        if(!error){
+            NSLog(@"%@", result);
+        }
+    }];
+    
 }
 
 

@@ -26,22 +26,27 @@
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    
-    // **** reachability class **** //
-    /*
-    newReachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
-    
-    newReachability.reachableOnWWAN = YES;
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     
     
-    // **** using NSNotificationCenter **** //
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityMethod:) name:kReachabilityChangedNotification object:newReachability];
     
-    [newReachability startNotifier];
-    
-     */
     return YES;
 }
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    
+    [PFPush handlePush:userInfo];
+    NSLog(@"this got called %@", userInfo);
+    
+}
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
