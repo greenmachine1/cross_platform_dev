@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Gigbag": {
+            "applicationId": "qpsrDDopYR4JfloQD3IMCm5oEAn9D0kAFoX0Xmec", 
+            "masterKey": "SkpxcTKUF8shVN0fDSolVBRdRnsSvAzmGNwKmq3E"
+        }, 
+        "_default": {
+            "link": "Gigbag"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.18"
+    }
+}
