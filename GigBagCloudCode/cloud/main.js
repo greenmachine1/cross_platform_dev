@@ -8,12 +8,14 @@ Parse.Cloud.define("hello", function(request, response) {
 
 
 
+
+
 Parse.Cloud.afterSave("Post", function(request){
 	
 	var name = request.object.get('bandName');
 
 	var pushQuery = new Parse.Query(Parse.Installation);
-	pushQuery.equalTo('deviceType', 'ios');
+	//pushQuery.equalTo('deviceType', 'ios');
 	
 	Parse.Push.send({
 		where: pushQuery,
@@ -32,15 +34,10 @@ Parse.Cloud.afterSave("Post", function(request){
 });
 
 
-
-
-
-
-
 Parse.Cloud.afterDelete("Post", function(request){
 
 	var pushQuery = new Parse.Query(Parse.Installation);
-	pushQuery.equalTo('deviceType', 'ios');
+	//pushQuery.equalTo('deviceType', 'ios');
 	
 	Parse.Push.send({
 		where: pushQuery,
