@@ -33,9 +33,7 @@
         user = [PFUser currentUser];
         
         userInfoArray = [[NSMutableArray alloc] init];
-        
         numberOfMembers = [[NSMutableArray alloc] init];
-        
         idsOfBands = [[NSMutableArray alloc] init];
         
         reachability = [Reachability reachabilityWithHostname:@"http://www.yahoo.com"];
@@ -47,11 +45,22 @@
         
         [reachability stopNotifier];
         
+        // **** getting my notifications ****
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadData:) name:@"uploadData" object:nil];
+        
         
     }
     return self;
 }
 
+
+// **** when a notification from the server comes through, Ill upload a new set of data **** //
+-(void)uploadData:(NSNotification *)notify{
+    
+    NSLog(@"Got called from an outside Notification");
+
+    [self uploadMainData];
+}
 
 
 
@@ -65,20 +74,14 @@
     
     if([defaults objectForKey:@"userName"] != NULL){
         
-        NSLog(@"%@", [defaults objectForKey:@"userName"]);
-        NSLog(@"%@", [defaults objectForKey:@"userEmail"]);
+        [self uploadMainData];
     }
     
     
 
 }
 
-
-
-
-
-// **** changes in connectivity **** //
--(void)reachabilityMethod:(NSNotification *)notify{
+-(void)uploadMainData{
     
     // **** if the connectivity becomes available **** //
     // **** we need to reload the data **** //
@@ -93,7 +96,6 @@
             [numberOfMembers removeAllObjects];
             
             [idsOfBands removeAllObjects];
-            
             
             // **** an error has happened
             if(error){
@@ -121,6 +123,14 @@
 
 
 
+// **** changes in connectivity **** //
+-(void)reachabilityMethod:(NSNotification *)notify{
+    
+    [self uploadMainData];
+}
+
+
+
 // **** once the view comes back from editing, deleting, **** //
 // **** or creation, I need to pull info again to **** //
 // **** repopulate my list **** //
@@ -131,7 +141,7 @@
     // **** if there is a connection **** //
     if(reachability.isReachable == 1){
     
-        [self performSelector:@selector(updateAt:) withObject:nil afterDelay:5.0];
+        [self uploadMainData];
     }
 
 }
@@ -143,42 +153,7 @@
     
     NSLog(@"fired");
     
-    query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"user" equalTo:user];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        NSLog(@"All the objects %@", objects);
-        
-        [userInfoArray removeAllObjects];
-        
-        [numberOfMembers removeAllObjects];
-        
-        [idsOfBands removeAllObjects];
-        
-        
-        // **** an error has happened
-        if(error){
-            
-            
-        }else{
-            
-            for(PFObject *object in objects){
-                NSLog(@"%@", object);
-                
-                NSNumber *numberOfMemebersInBand = [object objectForKey:@"bandSize"];
-                
-                [userInfoArray addObject:[object objectForKey:@"bandName"]];
-                
-                [numberOfMembers addObject:numberOfMemebersInBand];
-                
-                [idsOfBands addObject:object.objectId];
-                
-                [userInfoTableView reloadData];
-            }
-            NSLog(@"data --> %@", idsOfBands);
-            
-        }
-    }];
+    [self uploadMainData];
     
     [newTimer invalidate];
 
@@ -394,5 +369,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+// **** being sure to remove the notification **** //
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    
+}
+
 
 @end

@@ -26,9 +26,8 @@
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
-    
-    
     
     return YES;
 }
@@ -44,6 +43,9 @@
     
     [PFPush handlePush:userInfo];
     NSLog(@"this got called %@", userInfo);
+    
+    // ********** notifying the other part of the program that the background has become present ********** //
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadData" object:nil];
     
 }
 
