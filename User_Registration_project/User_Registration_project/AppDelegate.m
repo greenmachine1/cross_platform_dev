@@ -29,6 +29,8 @@
     
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     
+    
+    
     return YES;
 }
 
