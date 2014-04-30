@@ -30,11 +30,13 @@ public class Application_class extends Application{
         
         PushService.setDefaultPushCallback(this, User_Info.class);
         
-     // Save the current Installation to Parse.
+        // Save the current Installation to Parse.
         ParseInstallation.getCurrentInstallation().saveInBackground();
         
-     // When users indicate they are Giants fans, we subscribe them to that channel.
+        // When users indicate they are Giants fans, we subscribe them to that channel.
         PushService.subscribe(getApplicationContext(), "Post", MainActivity.class);
+        
+        
 	}
 
 }

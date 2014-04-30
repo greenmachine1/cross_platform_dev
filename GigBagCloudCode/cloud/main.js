@@ -12,15 +12,12 @@ Parse.Cloud.define("hello", function(request, response) {
 
 Parse.Cloud.afterSave("Post", function(request){
 	
-	var name = request.object.get('bandName');
-
 	var pushQuery = new Parse.Query(Parse.Installation);
 	//pushQuery.equalTo('deviceType', 'ios');
 	
 	Parse.Push.send({
 		where: pushQuery,
 		data: {
-			alert: "" + name
 		}
 	},{
 	sucess: function(){

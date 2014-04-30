@@ -52,6 +52,10 @@ public class User_info_List_Fragment extends Fragment{
 	IntentFilter filter;
 	boolean isConnected;
 	
+	IntentFilter intentFilter;
+	
+	private BroadcastReceiver myReciever;
+	
 	
 	// **** declaring the adapter array list **** //
 	public ArrayList<Main_list_definition> bandNameAndSizeList = new ArrayList<Main_list_definition>();
@@ -107,8 +111,26 @@ public class User_info_List_Fragment extends Fragment{
         filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);  
         getActivity().registerReceiver(networkStateReceiver, filter);
 		
-	
         
+        /*
+    	intentFilter = new IntentFilter("com.");
+
+    	myReciever = new BroadcastReceiver(){
+
+    		@Override
+    		public void onReceive(Context context, Intent intent) {
+    			// TODO Auto-generated method stub
+    			Log.i("just called", "yeppers");
+    			
+
+    		}
+    	};
+
+    	// -- setting the reciever to be registered
+    	getActivity().registerReceiver(myReciever, intentFilter);
+
+    	*/
+
 		
 
 		
