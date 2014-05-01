@@ -28,12 +28,11 @@ public class Application_class extends Application{
         Parse.initialize(getApplicationContext(), "qpsrDDopYR4JfloQD3IMCm5oEAn9D0kAFoX0Xmec", 
         		"uqZYdwJyr8DJ9LiMhQiKy2683tZsHu36q0nUP7Bp");
         
-        PushService.setDefaultPushCallback(this, User_Info.class);
+        PushService.setDefaultPushCallback(this, MainActivity.class);
         
         // Save the current Installation to Parse.
         ParseInstallation.getCurrentInstallation().saveInBackground();
-        
-        // When users indicate they are Giants fans, we subscribe them to that channel.
+       
         PushService.subscribe(getApplicationContext(), "Post", MainActivity.class);
         
         

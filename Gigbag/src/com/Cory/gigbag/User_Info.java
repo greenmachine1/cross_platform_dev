@@ -1,9 +1,11 @@
 package com.Cory.gigbag;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -53,5 +55,15 @@ public class User_Info extends FragmentActivity{
         	
         });
         
+	}
+	// **** the receiver class
+	public class reciever extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			Log.i("Got called from User_info class", "Yes");
+		}
+		
 	}
 }

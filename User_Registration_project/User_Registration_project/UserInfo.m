@@ -76,8 +76,6 @@
         
         [self uploadMainData];
     }
-    
-    
 
 }
 
@@ -145,21 +143,6 @@
     }
 
 }
-
-
-
-// **** called to update the app **** //
--(void)updateAt:(NSTimer *)time{
-    
-    NSLog(@"fired");
-    
-    [self uploadMainData];
-    
-    [newTimer invalidate];
-
-    
-}
-
 
 
 

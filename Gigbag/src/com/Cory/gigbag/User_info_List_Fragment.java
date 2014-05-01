@@ -112,24 +112,27 @@ public class User_info_List_Fragment extends Fragment{
         getActivity().registerReceiver(networkStateReceiver, filter);
 		
         
-        /*
-    	intentFilter = new IntentFilter("com.");
-
+        
+        
+        // **** broadcast receiver used to tell when the server data has changed **** //
+    	intentFilter = new IntentFilter("com.google.android.c2dm.intent.RECEIVE");
     	myReciever = new BroadcastReceiver(){
 
     		@Override
     		public void onReceive(Context context, Intent intent) {
     			// TODO Auto-generated method stub
     			Log.i("just called", "yeppers");
+    			loadData();
     			
 
     		}
     	};
 
+    	
     	// -- setting the reciever to be registered
     	getActivity().registerReceiver(myReciever, intentFilter);
 
-    	*/
+    	
 
 		
 
@@ -316,4 +319,20 @@ public class User_info_List_Fragment extends Fragment{
 		// **** registering the reciever **** //
 		getActivity().registerReceiver(networkStateReceiver, filter);
 	}
+	
+	
+	
+	
+	
+	// **** the receiver class
+	public class reciever extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			Log.i("Got called", "Yes");
+		}
+		
+	}
+	
 }

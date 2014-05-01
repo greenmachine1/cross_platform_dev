@@ -59,6 +59,7 @@ public class New_Account extends Activity{
         noConnectionTextView = (TextView)findViewById(R.id.no_connection_text_field_new_account);
         
 		
+        
         createAccountButtonCreate = (Button)findViewById(R.id.create_account_button_account_create_button);
         
         // **** showing or not showing the elements initially **** //
