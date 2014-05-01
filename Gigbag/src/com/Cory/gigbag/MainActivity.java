@@ -190,6 +190,8 @@ public class MainActivity extends Activity {
         	noConnectionTextView.setVisibility(View.VISIBLE);
         }
     }
+	
+	
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
